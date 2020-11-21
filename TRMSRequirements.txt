@@ -105,7 +105,14 @@ What we need:
 		- Direct Supervisor
 		- Department Head
 		- Benefits Coordinator
-	- Tuition Reimbursement Form
+			- All beans should have:
+				- ID
+				- first name
+				- last name
+				- username
+				- password
+				- email? for employee?
+	- Tuition Reimbursement Form (read-only)
 	- Event Types:
 		- University Courses 80%
 		- Seminars 60%
@@ -114,3 +121,22 @@ What we need:
 		- Technical Traning 90% 
 		- Other 30%
 	- Grade/Presentation Upload
+
+
+Technologies:
+-Java 1.8
+-Servlets
+-JDBC
+-PL/SQL
+-HTML
+-CSS
+-Javascript
+-Bootstrap (optional)
+-AJAX
+-JUnit
+-log4j 
+-Tomcat Server
+-PostgreSQL 12
+-Eclipse/Spring Tools Suite
+-DBeaver
+-Trello
