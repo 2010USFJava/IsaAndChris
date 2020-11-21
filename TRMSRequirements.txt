@@ -1,0 +1,116 @@
+Tuition Reimbursement Management System (TRMS)
+
+Overview:
+	- Purpose of TRMS: provide a system that encourages quality knownledge growth relevant to an individual's expertise.
+	- Current System provides reimbursements for:
+		- university courses, seminars, ceritication preparation classes, certifications, and technical training.
+	- Current System relies solely on:
+		- email communication, requiring manual lookups of available funds and it error-prone due to inbox clutter
+		and incorrect routing of tasks
+	- Currently, there is no way to record and report on reimbursements awarded so the company has no way to indentify
+	hightly-invested courses that could be developed to be offered in-house.
+
+Business Rules:
+	- Employee:
+		- each employee is allowed to claim up to $1000 in tuition reimbursement a year ($1000 per year)
+		- the amount available to an employee is reset on the new year (January 1st)
+		- Event Types have different standard reimbursement coverage:
+			- University Courses 80%
+			- Seminars 60%
+			- Cerification Preparation Classes 75%
+			- Cerification 100%
+			- Technical Training 90%
+			- Other 30%
+	- After a BenCo has approved a reimbursement, the reimbursement is pending until a passing grade or presentation
+	over the event is provided.
+	- The monetary amount available for an employee to reimburse is definded by the following equation:
+		AvailableReimbursement = TotalReimbursement($1000) - PendingReimbursements - AwardedReimbursements
+	- If the projected reimbursement for an event exceeds the available reimbursement amount, it is adjusted to the amount available
+	- Reimbursements DO NOT cover course materials such as books
+
+Complete the Tuition Reimbursement Form:
+	- All Employees must complete the Tuition Reimbursement Form one week prior to the start of the event
+	- This form must collect (required):
+		- basic employee information
+		- date, time, location
+		- description
+		- cost
+		- grading format
+		- type of event
+		- work-related justification (not sure what that looks like)
+	- Employee can optionally include:
+		- event-related attachments of pdf, png, jpeg, txt, or doc file type
+		- attachments of approvals already provided of .msg (Outlook Email File) file type
+		- type of approval - work time that will be missed
+	- The projected reimbursement should be provided as a read-only field (encapsulation?)
+
+Business Rules:	
+	- Grading formats are pulled from a reference table
+	- Certain grading formats require the employee to perform a presentation to management after the event's completion 
+	and prior to awarded reimbursement
+		- A passing grade is needed for reimbursement otherwise
+	- Employee must provide the passing grade cutoff for the course, or choose to use a default passing grade if unknown
+	- If an employee provides an approval email - that approval step is skipped (cannot skip BenCo approval)
+	- If the course is less than (<) 2 weeks from beginning - the request is marked as urgent
+
+Direct Supervisor Approval:
+	- The direct supervisor must provide approval for Tuition Reimbursement.
+	- The direct supervisor can request additional infromation from the employee before approval
+Business Rules:
+	- If denied, the direct supervisor must provide a reason
+	- If the direct supervisor is also a department head, then the department head approval is skipped
+	- If the direct supervisor does not complete this task in a timely matter, the request is auto-approved
+
+Department Head Approval:
+	- The department head must provide approval for Tuition Reimbursement
+	- The deparment head can request additional information from the employee or direct supervisor before approval
+Business Rules:
+	- If the department head does not complete this task in a timely manner, the request is auto-approved
+
+Benefits Coordinator Approval:
+	- The Benifits Coordinator must provide approval for Tuition Reimbursement
+	- This stage is not skippable for any reason
+	- The benefits coordinator can request additional information from the employee, direct supervisor or department head
+	before approval
+	- The benefits coordinator has the ability to alter the reimbursement amount
+Business Rules:
+	- If the benefits coordinator changes the reimbursement amount, the employee should be notified and given the option 
+	to cancel the request
+	- If the benefits coordinator does not approve in a timely matter, an escalation email should be sent to the benefit 
+	coordinator's direct supervisor
+	- The benefits coordinator is allowed to award an amount larger than the amount available for the employee
+	- The benefits coordinator must provide reason for this, and the reimbursement must be marked as "exceeding available funds for 
+	reporting purposes"
+
+Grade/Presentation Upload
+	- Upon completion of the event:
+		- the employee should attach either the Grade or Presentation as appropiate
+	- After upload of a grade:
+		- the benefits coordinator must confirm that the grade is passing
+	- After upload of a presentation:
+		- the direct manager must confirm that the presentation was satisfactory and presented to the appropriate parties
+	- Upon confirmation:
+		- the amount is awarded to the requestor
+Business Rules:
+	- Only interested parties should be able to access the grade/presentation
+	- Interested parties include: 
+		- the requestor and approvers
+			
+
+
+
+What we need:
+	- People:
+		- Employee
+		- Direct Supervisor
+		- Department Head
+		- Benefits Coordinator
+	- Tuition Reimbursement Form
+	- Event Types:
+		- University Courses 80%
+		- Seminars 60%
+		- Cerifitcation Preparation Classes 75%
+		- Ceritifcations 100%
+		- Technical Traning 90% 
+		- Other 30%
+	- Grade/Presentation Upload
