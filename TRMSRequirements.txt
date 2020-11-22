@@ -96,6 +96,44 @@ Business Rules:
 	- Interested parties include: 
 		- the requestor and approvers
 			
+//each user story needs a value of difficulty/time needed to complete 
+//not yet complete
+User Stories:
+	- As an employee, I can/must:
+		- claim up to $1000 in tuition reimbursement a year
+		- complete the tuition reimbursement form one week prior to the start of the event
+			- optionally include:
+				- event-related attachments of pdf, png, jpeg, txt, or doc file type
+				- attachments of approvals already provided of .msg (Outlook Email File) file type
+				- type of approval - work time that will be missed
+		- must provide the passing grade cutoff for the course, or choose to use a default passing grade if unknown
+		- If an employee provides an approval email - that approval step is skipped (cannot skip BenCo approval)
+	-As a Direct Supervisor, I can/must:
+		- must provide approval for Tuition Reimbursement.
+		- can request additional infromation from the employee before approval
+		- If denied, the direct supervisor must provide a reason
+		- If the direct supervisor is also a department head, then the department head approval is skipped
+		- If the direct supervisor does not complete this task in a timely matter, the request is auto-approved
+	- As a Department Head, I can/must:
+		- must provide approval for Tuition Reimbursement
+		- can request additional information from the employee or direct supervisor before approval
+		- If the department head does not complete this task in a timely manner, the request is auto-approved
+	- As a Benefits Coordinator, I can/must:
+		- must provide approval for Tuition Reimbursement
+		- This stage is not skippable for any reason
+		- can request additional information from the employee, direct supervisor or department head
+			before approval
+		- has the ability to alter the reimbursement amount
+		- If the benefits coordinator changes the reimbursement amount, the employee should be notified and given the option 
+			to cancel the request
+		- If the benefits coordinator does not approve in a timely matter, an escalation email should be sent to the benefit 
+			coordinator's direct supervisor
+		- The benefits coordinator is allowed to award an amount larger than the amount available for the employee
+		- The benefits coordinator must provide reason for this, and the reimbursement must be marked as "exceeding available funds for 
+			reporting purposes"
+
+
+
 
 
 
@@ -140,3 +178,5 @@ Technologies:
 -Eclipse/Spring Tools Suite
 -DBeaver
 -Trello
+
+
