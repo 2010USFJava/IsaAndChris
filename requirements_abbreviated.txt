@@ -37,10 +37,10 @@ Department Head:
 Must (also?) provide approval for reimbursement (Webpage)
 	can request additional information from employee or supervisor
 	if reimbursment is left alone too long, it gets auto-approved
-Confirm uploaded grade
-	Confirmation awards money to the employee
-Confirm presentation was satisfactory and presented to appropriate parties
-	Confirmation awards money to the employee
+Confirmation (Webpage)
+	confirm uploaded grade
+	confirm presentation was satisfactory and presented to appropriate parties
+	confirmation awards money to the employee
 
 Benefits Coordinator (BenCo):
 -----------------------------------
