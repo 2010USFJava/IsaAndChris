@@ -1,0 +1,70 @@
+Requirements:
+
+Login (Webpage)?
+
+Employee:
+-----------------------------------
+Apply for reimbursement with form (Webpage)
+	at least one week before event
+	pending until approved
+	Form has:
+		basic employee information
+		date
+		time
+		location
+		description
+		cost
+		grading format
+		type of event
+		work-related justification
+		returns a read-only field for projected reimbursement
+	Optional attachments:
+		pdf, png, jpeg, txt, doc,
+		approvals already provided (.msg outlook email)
+			includes type of approval and work time that will be missed
+Attach grade or presentation after event completion (Webpage)
+	only viewable by employee and BenCo
+
+Direct Supervisor:
+-----------------------------------
+Approve reimbursement (Webpage)
+	if denying, must provide a reason (skipped if a department head)
+	can request additional information from the employee
+	if reimbursment is left alone too long, it gets auto-approved
+
+Department Head:
+-----------------------------------
+Must (also?) provide approval for reimbursement (Webpage)
+	can request additional information from employee or supervisor
+	if reimbursment is left alone too long, it gets auto-approved
+Confirm uploaded grade
+	Confirmation awards money to the employee
+Confirm presentation was satisfactory and presented to appropriate parties
+	Confirmation awards money to the employee
+
+Benefits Coordinator (BenCo):
+-----------------------------------
+Approve reimbursiment (cannot be skipped) (Webpage)
+	can request additional information from employee, supervisor, or department head
+	can alter reimbursement amount
+		must notify employee and given the chance to cancel request
+		can award larger amount than available to employee
+			must provide reason for this, and reimbursement is marked as exceeding funds for reporting purposes
+	if reimbursment is left alone too long, escalation email is sent to BenCo supervisor
+
+Miscellaneous:
+-----------------------------------
+Event types have different reimbursement coverage:
+	total does not exceed $1000 (available = 1000 - awarded - pending)
+	university courses 80%
+	seminars 60%
+	certification preparation classes 75%
+	certification 100%
+	technical training 90%
+	other 30%
+
+Grading formats are stored in a reference table
+	certain formats require presentation
+	otherwise a passing grade is required
+	an approval email can skip grade turn-in?
+	if a course is <2 weeks from starting, the request is marked urgent
