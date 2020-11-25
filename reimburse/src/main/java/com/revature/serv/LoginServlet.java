@@ -17,13 +17,13 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("LoginServlet.doGet");
-		RequestDispatcher rd = request.getRequestDispatcher("login.html");
+		RequestDispatcher rd = request.getRequestDispatcher("html/login.html");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("LoginServlet.doPost");
-		request.getRequestDispatcher("home.html").forward(request, response);
+		request.getRequestDispatcher("html/home.html").forward(request, response);
 	}
 
 }
