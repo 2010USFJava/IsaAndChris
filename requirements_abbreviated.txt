@@ -1,6 +1,7 @@
 Requirements:
 
-Login (Webpage)?
+Login (Webpage)
+	invalidate session after logout
 
 Employee:
 -----------------------------------
@@ -22,6 +23,7 @@ Apply for reimbursement with form (Webpage)
 		pdf, png, jpeg, txt, doc,
 		approvals already provided (.msg outlook email)
 			includes type of approval and work time that will be missed
+
 Attach grade or presentation after event completion (Webpage)
 	only viewable by employee and BenCo
 
@@ -32,15 +34,15 @@ Approve reimbursement (Webpage)
 	can request additional information from the employee
 	if reimbursment is left alone too long, it gets auto-approved
 
-Department Head:
------------------------------------
-Must (also?) provide approval for reimbursement (Webpage)
-	can request additional information from employee or supervisor
-	if reimbursment is left alone too long, it gets auto-approved
 Confirmation (Webpage)
-	confirm uploaded grade
 	confirm presentation was satisfactory and presented to appropriate parties
 	confirmation awards money to the employee
+
+Department Head:
+-----------------------------------
+Approve reimbursement (Webpage)
+	can request additional information from employee or supervisor
+	if reimbursment is left alone too long, it gets auto-approved
 
 Benefits Coordinator (BenCo):
 -----------------------------------
@@ -51,6 +53,10 @@ Approve reimbursiment (cannot be skipped) (Webpage)
 		can award larger amount than available to employee
 			must provide reason for this, and reimbursement is marked as exceeding funds for reporting purposes
 	if reimbursment is left alone too long, escalation email is sent to BenCo supervisor
+
+Confirmation (Webpage)
+	confirm uploaded grade
+	confirmation awards money to the employee
 
 Miscellaneous:
 -----------------------------------

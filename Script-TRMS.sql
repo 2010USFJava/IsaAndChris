@@ -15,6 +15,7 @@ password varchar(20) not null
 create table EventForm(
 eventId serial primary key not null,
 employeeId int,
+
 dateOfEvent date not null, -- data datatype or varchar?
 timeOfEvent time(precision) not null,--time datatype or varchar? --change
 eventLocation varchar(30) not null,
@@ -38,3 +39,5 @@ drop type EventType;
 
 drop table employee;
 --employeeId serial primary key not null,--not a primary key? don't think that would work
+
+
