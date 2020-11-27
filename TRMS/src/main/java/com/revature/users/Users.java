@@ -1,7 +1,8 @@
 package com.revature.users;
 
-public abstract class Users {
+public class Users {
 //or make an interface?
+	// we need instances to easily obtain info from the DB -Chris
 	private String username;
 	private String password;
 	
@@ -29,5 +30,9 @@ public abstract class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Users [username=" + username + ", password=" + password + "]";
+	}
 }
