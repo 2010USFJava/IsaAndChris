@@ -9,6 +9,7 @@ public class LoginController {
 	static UsersService loginService = new UsersService();
 
 	public static String login(HttpServletRequest req) {
+		System.out.println("LoginController.login");
 		if (!req.getMethod().equals("POST")) {
 			return "html/index.html";
 		}
@@ -19,7 +20,7 @@ public class LoginController {
 		if (user == null) {
 			return "wrongcreds.change";
 		} else {
-			req.getSession().setAttribute("currentLogin", user);
+			req.getSession().setAttribute("currentlogin", user);
 			return "home.change";
 		}
 	}

@@ -13,7 +13,7 @@ public class UserController {
 
 	public static void getUserSession(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
-		Users user = (Users) req.getSession().getAttribute("currentUser");
+		Users user = (Users) req.getSession().getAttribute("currentuser");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(user));
 	}
 
