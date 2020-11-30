@@ -7,22 +7,6 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	<!-- <servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.revature.serv.LoginServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/login</url-pattern>
-	</servlet-mapping> -->
-	<!-- <servlet>
-		<servlet-name>HomeServlet</servlet-name>
-		<servlet-class>com.revature.serv.HomeServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HomeServlet</servlet-name>
-		<url-pattern>/home</url-pattern>
-	</servlet-mapping> -->
 	<servlet>
 		<servlet-name>MasterServlet</servlet-name>
 		<servlet-class>com.revature.serv.MasterServlet</servlet-class>

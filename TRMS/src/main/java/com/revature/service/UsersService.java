@@ -10,6 +10,7 @@ public class UsersService {
 	UsersDaoImpl udi = new UsersDaoImpl();
 
 	public Users loginGetEmployee(String username, String password) {
+		System.out.println("UsersService.loginGetEmployee username: " + username + ", password: " + password);
 		if (loginVerify(username, password)) {
 			try {
 				return udi.getUserByUsername(username);
@@ -22,8 +23,10 @@ public class UsersService {
 
 	public boolean loginVerify(String username, String password) {
 		List<Users> usersList = null;
+		System.out.println("UsersService.loginVerify username: " + username + ", password: " + password);
 		try {
 			usersList = udi.getAllUsers();
+			System.out.println("All users: " + usersList.toString());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -33,6 +36,7 @@ public class UsersService {
 				verify = true;
 			}
 		}
+		System.out.println("loginVery user found = " + verify);
 		return verify;
 	}
 

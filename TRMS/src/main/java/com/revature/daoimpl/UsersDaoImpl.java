@@ -51,6 +51,7 @@ public class UsersDaoImpl implements UsersDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("UsersDaoImpl.getUserByUsername user = " + user.toString());
 		return user;
 	}
 
@@ -62,7 +63,7 @@ public class UsersDaoImpl implements UsersDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				usersList.add(new Users(rs.getString(1), rs.getString(2)));
+				usersList.add(new Users(rs.getString(2), rs.getString(3))); // The first variable is the emp_id
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -25,19 +25,19 @@ public class ConnFactory {
 	public Connection getConnection() {
 		Connection conn = null;
 		Properties prop = new Properties();
-
+		String url = "jdbc:postgresql://isaandchrisdb.c8xt2vsyvgm5.us-east-2.rds.amazonaws.com:5432/postgres";
+		String username = "project1";
+		String password = "database";
 		try {
-			prop.load(new FileReader("database.properties"));
-			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"),
-					prop.getProperty("password"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+//			prop.load(new FileReader("C:\\Users\\chris\\Documents\\GitHub\\IsaAndChris\\TRMS\\database.properties"));
+//			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"),
+//					prop.getProperty("password"));
+			conn = DriverManager.getConnection(url, username, password);
+		} /*catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}*/ catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return conn;

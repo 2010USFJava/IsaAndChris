@@ -6,7 +6,7 @@ import com.revature.service.UsersService;
 import com.revature.users.Users;
 
 public class LoginController {
-	static UsersService loginService = new UsersService();
+	static UsersService usersService = new UsersService();
 
 	public static String login(HttpServletRequest req) {
 		System.out.println("LoginController.login");
@@ -16,7 +16,8 @@ public class LoginController {
 
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		Users user = loginService.loginGetEmployee(username, password);
+		Users user = usersService.loginGetEmployee(username, password);
+		System.out.println("LoginController.login user = " + user);
 		if (user == null) {
 			return "wrongcreds.change";
 		} else {
