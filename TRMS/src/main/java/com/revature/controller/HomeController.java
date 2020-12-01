@@ -1,5 +1,9 @@
 package com.revature.controller;
 
-public class HomeController {
+import javax.servlet.http.HttpServletRequest;
 
+public class HomeController {
+	public static String home(HttpServletRequest req) {
+		return "html/home.html";
+	}
 }

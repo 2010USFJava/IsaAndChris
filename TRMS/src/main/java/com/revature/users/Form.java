@@ -10,7 +10,7 @@ public class Form implements Events {
 //	private SimpleDateFormat dateOfEvent;//figure out how to use
 //	//(hh,mm,a) hh= hour in am/pm (1-12) (exDisplay: 11:); mm= minutes in hour (exDisplay: :22); a= am/pm marker
 //	private SimpleDateFormat timeOfEvent;
-	Employee employee; //do we need this for basic information?
+	//Employee employee; //do we need this for basic information?
 	private EventType eventType;
 	private Timestamp dateAndTime;
 	private String eventLocation;
@@ -154,7 +154,7 @@ public class Form implements Events {
 
 	@Override
 	public String toString() {
-		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", employee=" + employee + ", eventType="
+		return "Form [eventId=" + eventId + ", employeeId=" + employeeId +  ", eventType="
 				+ eventType + ", dateAndTime=" + dateAndTime + ", eventLocation=" + eventLocation + ", eventCost="
 				+ eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description + ", justification="
 				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved=" + isApproved + "]";
