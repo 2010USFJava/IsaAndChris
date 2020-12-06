@@ -1,6 +1,6 @@
 package com.revature.users;
 
-public class DirectSupervisor extends Users{
+public class DirectSupervisor extends User{
 	private int superId;
 	private String firstName;
 	private String lastName;
@@ -12,7 +12,7 @@ public class DirectSupervisor extends Users{
 	
 	//use for login?
 	public DirectSupervisor(String username, String password) {
-		super(username, password);
+		super(null, username, password);
 	}
 
 	public DirectSupervisor(int superId, String firstName, String lastName, boolean isADepartmentHead) {

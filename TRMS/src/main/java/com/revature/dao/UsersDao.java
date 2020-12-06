@@ -3,14 +3,14 @@ package com.revature.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.users.Users;
+import com.revature.users.User;
 
 public interface UsersDao {
 
-	public List<Users> getAllUsers() throws SQLException;
+	public List<User> getAllUsers() throws SQLException;
 
-	public Users getUserByUsername(String username) throws SQLException;
+	public User getUserByUsername(String username) throws SQLException;
 
-	public void insertUser(Users user) throws SQLException;
+	public void insertUser(User user) throws SQLException;
 
 }

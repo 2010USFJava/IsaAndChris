@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.dao.UsersDao;
-import com.revature.users.Users;
+import com.revature.users.Employee;
+import com.revature.users.User;
 import com.revature.util.ConnFactory;
 
 public class UsersDaoImpl implements UsersDao {
@@ -23,12 +24,12 @@ public class UsersDaoImpl implements UsersDao {
 		}
 	}
 
-	public void insertUser(Users user) throws SQLException {
+	public void insertUser(User user) throws SQLException {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "insert into users values (?, ?)";
+			String sql = "insert into login values (?, ?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(2, user.getUsername()); // The first variable is the emp_id
+			ps.setString(2, user.getUsername()); // The first column is generated automatically
 			ps.setString(3, user.getPassword());
 			ps.execute();
 		} catch (SQLException e) {
@@ -36,16 +37,17 @@ public class UsersDaoImpl implements UsersDao {
 		}
 	}
 
-	public Users getUserByUsername(String username) throws SQLException {
-		Users user = new Users();
+	public User getUserByUsername(String username) throws SQLException {
+		User user = new User();
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "select * from users where username = ?";
+			String sql = "select * from login where username = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				user.setUsername(rs.getString(2)); // The first variable is the emp_id
+				user.setEmployeeId(rs.getInt(1));
+				user.setUsername(rs.getString(2));
 				user.setPassword(rs.getString(3));
 			}
 		} catch (SQLException e) {
@@ -55,20 +57,41 @@ public class UsersDaoImpl implements UsersDao {
 		return user;
 	}
 
-	public List<Users> getAllUsers() throws SQLException {
-		List<Users> usersList = new ArrayList<Users>();
+	public List<User> getAllUsers() throws SQLException {
+		List<User> usersList = new ArrayList<User>();
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "select * from users";
+			String sql = "select * from login";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				usersList.add(new Users(rs.getString(2), rs.getString(3))); // The first variable is the emp_id
+				usersList.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return usersList;
+	}
+	
+	public Employee getEmployeeByUserId(Integer id) {
+		Employee employee = new Employee();
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from employee where employeeid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				employee.setEmployeeId(rs.getInt(1));
+				employee.setFirstName(rs.getString(2));
+				employee.setLastName(rs.getString(3));
+				employee.setReimburseAmount(rs.getDouble(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("UsersDaoImpl.getEmployeeByUserId employee = " + employee.toString());
+		return employee;
 	}
 
 }

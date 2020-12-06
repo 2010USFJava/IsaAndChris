@@ -1,12 +1,10 @@
 package com.revature.users;
 
-public class Employee extends Users {
+public class Employee extends User {
 	private int employeeId;
 	private String firstName;
 	private String lastName;
 	private double reimburseAmount;
-	//implements username and password
-	//hopefully employeeId will also be connected to username and password for easy use of the database
 	
 	public Employee() {
 		super();
@@ -14,7 +12,7 @@ public class Employee extends Users {
 	
 	//use for login
 	public Employee(String username, String password) {
-		super(username, password);
+		super(null, username, password);
 	}
 
 	public Employee(int employeeId, String firstName, String lastName) {
@@ -25,7 +23,7 @@ public class Employee extends Users {
 		//log for when a new employee is made (for our purposes not demonstration)
 	}
 	
-	public int getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
 	

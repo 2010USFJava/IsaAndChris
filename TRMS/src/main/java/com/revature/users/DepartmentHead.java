@@ -1,6 +1,6 @@
 package com.revature.users;
 
-public class DepartmentHead extends Users{
+public class DepartmentHead extends User{
 	private int departmentId;
 	private String firstName;
 	private String lastName;
@@ -12,7 +12,7 @@ public class DepartmentHead extends Users{
 	
 	//use for login
 	public DepartmentHead(String username, String password) {
-		super(username, password);
+		super(null, username, password);
 	}
 	
 	public DepartmentHead(int departmentId, String firstName, String lastName) {

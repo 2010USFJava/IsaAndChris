@@ -2,11 +2,12 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.revature.service.UsersService;
-import com.revature.users.Users;
+import com.revature.service.LoginService;
+import com.revature.users.Employee;
+import com.revature.users.User;
 
 public class LoginController {
-	static UsersService usersService = new UsersService();
+	static LoginService loginService = new LoginService();
 
 	public static String login(HttpServletRequest req) {
 		System.out.println("LoginController.login");
@@ -16,12 +17,15 @@ public class LoginController {
 
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		Users user = usersService.loginGetEmployee(username, password);
+		System.out.println("LoginController.login username = " + username + " password = " + password);
+		User user = loginService.loginGetUser(username, password);
 		System.out.println("LoginController.login user = " + user);
 		if (user == null) {
 			return "wrongcreds.change";
 		} else {
-			req.getSession().setAttribute("currentlogin", user);
+			Employee employee = loginService.callGetEmployeeByUserId(user.getEmployeeId());
+			System.out.println("LoginController.login employee = " + employee);
+			req.getSession().setAttribute("currentlogin", employee);
 			return "home.change";
 		}
 	}
