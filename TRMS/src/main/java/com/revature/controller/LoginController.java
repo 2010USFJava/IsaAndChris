@@ -1,6 +1,8 @@
 package com.revature.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.revature.service.LoginService;
 import com.revature.users.Employee;
@@ -9,7 +11,7 @@ import com.revature.users.User;
 public class LoginController {
 	static LoginService loginService = new LoginService();
 
-	public static String login(HttpServletRequest req) {
+	public static String login(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("LoginController.login");
 		if (!req.getMethod().equals("POST")) {
 			return "html/index.html";
@@ -26,6 +28,10 @@ public class LoginController {
 			Employee employee = loginService.callGetEmployeeByUserId(user.getEmployeeId());
 			System.out.println("LoginController.login employee = " + employee);
 			req.getSession().setAttribute("currentlogin", employee);
+//			Cookie empIdCookie = new Cookie("employeeId", employee.getEmployeeId().toString());
+//			Cookie empTitleCookie = new Cookie("jobTitleCode", Integer.toString(employee.getJobTitleCode()));
+//			res.addCookie(empIdCookie);
+//			res.addCookie(empTitleCookie);
 			return "home.change";
 		}
 	}

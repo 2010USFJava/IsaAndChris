@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 public class MasterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		System.out.println("MasterServlet.doGet");
-		req.getRequestDispatcher(RequestHelper.process(req)).forward(req, res);
+		req.getRequestDispatcher(RequestHelper.process(req, res)).forward(req, res);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		System.out.println("MasterServlet.doPost");
-		req.getRequestDispatcher(RequestHelper.process(req)).forward(req, res);
+		req.getRequestDispatcher(RequestHelper.process(req, res)).forward(req, res);
 	}
 }

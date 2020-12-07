@@ -15,12 +15,13 @@ public class JSONRequestHelper {
 	public static void process(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, JsonProcessingException {
 		switch (req.getRequestURI()) {
-		case "/TRMS/getsession.json":
+//		case "/TRMS/getsession.json":
+		default:
 			System.out.println("JSONRequestHelper.process req = " + req.toString());
 			UserController.getUserSession(req, res);
-		default:
-			User user = new User(0, "?", "?");
-			res.getWriter().write(new ObjectMapper().writeValueAsString(user));
+//		default:
+//			User user = new User(0, "?", "?");
+//			res.getWriter().write((new ObjectMapper().writeValueAsString(user)));
 		}
 	}
 

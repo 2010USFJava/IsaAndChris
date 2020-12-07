@@ -17,7 +17,7 @@ public class UserController {
 		System.out.println("UserController.getUserSession session currentlogin = "
 				+ req.getSession().getAttribute("currentlogin"));
 		Employee employee = (Employee) req.getSession().getAttribute("currentlogin");
-		System.out.println("User from session = " + employee);
+		System.out.println("Employee from session = " + employee);
 		res.getWriter().write(new ObjectMapper().writeValueAsString(employee));
 	}
 

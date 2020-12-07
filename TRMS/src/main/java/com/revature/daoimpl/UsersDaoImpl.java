@@ -72,7 +72,7 @@ public class UsersDaoImpl implements UsersDao {
 		}
 		return usersList;
 	}
-	
+
 	public Employee getEmployeeByUserId(Integer id) {
 		Employee employee = new Employee();
 		try {
@@ -86,6 +86,7 @@ public class UsersDaoImpl implements UsersDao {
 				employee.setFirstName(rs.getString(2));
 				employee.setLastName(rs.getString(3));
 				employee.setReimburseAmount(rs.getDouble(4));
+				employee.setJobTitleCode(rs.getInt(5));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
