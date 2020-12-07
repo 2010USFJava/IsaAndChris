@@ -1,6 +1,6 @@
 package com.revature.users;
 
-public class BenefitsCoordinator extends Users{
+public class BenefitsCoordinator extends User{
 	private int benCoId;
 	private String firstName;
 	private String lastName;
@@ -11,9 +11,9 @@ public class BenefitsCoordinator extends Users{
 	}
 	
 	//use for login
-	public BenefitsCoordinator(String username, String password) {
-		super(username, password);
-	}
+//	public BenefitsCoordinator(String username, String password) {
+//		super(username, password);
+//	}
 	
 	public BenefitsCoordinator(int benCoId, String firstName, String lastName) {
 		super();

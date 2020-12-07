@@ -2,20 +2,27 @@ package com.revature.users;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class Form implements Events {
-	private int eventId;
-	private int employeeId;
+	private long eventId;
+	private long employeeId;
 //	//(yyyy,MMM,dd) y= year(exDisplay: 2020); M= month in year(exDisplay: Jul); d= day in month(exDisplay: 04)
 //	private SimpleDateFormat dateOfEvent;//figure out how to use
 //	//(hh,mm,a) hh= hour in am/pm (1-12) (exDisplay: 11:); mm= minutes in hour (exDisplay: :22); a= am/pm marker
 //	private SimpleDateFormat timeOfEvent;
 	//Employee employee; //do we need this for basic information?
+	Employee employee;
 	private EventType eventType;
+	@JsonProperty("dateAndTime")
 	private Timestamp dateAndTime;
 	private String eventLocation;
 	private double eventCost;
 	private GradeFormat gradeFormat;
+
 	private String description;
 	private String justification;
 	private boolean hasApprovalEmail;
@@ -25,9 +32,9 @@ public class Form implements Events {
 		super();
 	}
 
-
-	public Form(int eventId, int employeeId, EventType eventType, Timestamp dateAndTime,
-			String eventLocation,  double eventCost, GradeFormat gradeFormat, String description,
+	@JsonCreator
+	public Form(long eventId, long employeeId, @JsonProperty("eventType") EventType eventType, Timestamp dateAndTime,
+			String eventLocation,  double eventCost, @JsonProperty("gradeFromat") GradeFormat gradeFormat, String description,
 			String justification, boolean hasApprovalEmail, boolean isApproved) {
 		super();
 		this.eventId = eventId;
@@ -42,24 +49,25 @@ public class Form implements Events {
 		this.hasApprovalEmail = hasApprovalEmail;
 		this.isApproved = isApproved;
 	}
+	
+	
 
-
-	public int getEventId() {
+	public long getEventId() {
 		return eventId;
 	}
 
 
-	public void setEventId(int eventId) {
+	public void setEventId(long eventId) {
 		this.eventId = eventId;
 	}
 
 
-	public int getEmployeeId() {
+	public long getEmployeeId() {
 		return employeeId;
 	}
 
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -81,7 +89,7 @@ public class Form implements Events {
 		this.eventLocation = eventLocation;
 	}
 
-
+//	@JsonValue
 	public EventType getEventType() {
 		return eventType;
 	}
@@ -100,8 +108,8 @@ public class Form implements Events {
 	public void setEventCost(double eventCost) {
 		this.eventCost = eventCost;
 	}
-
-
+//
+//	@JsonValue
 	public GradeFormat getGradeFormat() {
 		return gradeFormat;
 	}

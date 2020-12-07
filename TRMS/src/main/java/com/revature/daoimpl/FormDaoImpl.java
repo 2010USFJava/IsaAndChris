@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.revature.dao.FormDao;
 import com.revature.users.Form;
+import com.revature.users.Events.EventType;
+import com.revature.users.Events.GradeFormat;
 import com.revature.util.ConnFactory;
 
 public class FormDaoImpl implements FormDao{
@@ -19,34 +21,53 @@ public class FormDaoImpl implements FormDao{
 
 	@Override
 	public List<Form> getAllForms() throws SQLException {
-		return null;
+		Connection conn = cf.getConnection();
+		String sql = "select * from eventform";
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		Form f = null;
+		while(rs.next()) {
+			f = new Form(rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)), rs.getTimestamp(4), 
+				rs.getString(5), rs.getDouble(6), GradeFormat.valueOf(rs.getString(7)), rs.getString(8), rs.getString(9),
+				rs.getBoolean(10), rs.getBoolean(11));
+			formList.add(f);
+		}
+		return formList;
 	}
 
 	@Override
 	public Form getFormById(long id) throws SQLException {
-		
-		return null;
+		Connection conn = cf.getConnection();
+		String sql = "select * from eventform where eventId=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		Form f = null;
+		while(rs.next()) {
+			f = new Form(rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)), rs.getTimestamp(4), 
+					rs.getString(5), rs.getDouble(6), GradeFormat.valueOf(rs.getString(7)), rs.getString(8), rs.getString(9),
+					rs.getBoolean(10), rs.getBoolean(11));
+		}
+		return f;
 	}
 
 	@Override
 	public long insertNewForm(Form form, long id) throws SQLException {
-		String eventEnum = form.getEventType().toString();
-		String gradeEnum = form.getGradeFormat().toString();
 		
-		String sql = "insert into form values (DEFAULT,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into eventform values (DEFAULT,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = cf.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		pstmt.setLong(1, id);
-		pstmt.setLong(2, form.getEmployeeId());
-		pstmt.setString(3, eventEnum);
-		pstmt.setTimestamp(4, form.getDateAndTime());
-		pstmt.setString(5, form.getEventLocation());
-		pstmt.setDouble(6, form.getEventCost());
-		pstmt.setString(7, gradeEnum);
-		pstmt.setString(8, form.getDescription());
-		pstmt.setString(9, form.getJustification());
-		pstmt.setBoolean(10, form.isHasApprovalEmail());
-		pstmt.setBoolean(11, form.isApproved());
+		pstmt.setLong(1, form.getEmployeeId());
+		pstmt.setString(2, form.getEventType().toString());
+		pstmt.setTimestamp(3, form.getDateAndTime());
+		pstmt.setString(4, form.getEventLocation());
+		pstmt.setDouble(5, form.getEventCost());
+		pstmt.setString(6, form.getGradeFormat().toString());
+		pstmt.setString(7, form.getDescription());
+		pstmt.setString(8, form.getJustification());
+		pstmt.setBoolean(9, form.isHasApprovalEmail());
+		pstmt.setBoolean(10, form.isApproved());
+		
 		
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
@@ -62,12 +83,19 @@ public class FormDaoImpl implements FormDao{
 
 	@Override
 	public long deleteForm(Form form, long id) throws SQLException {
-		
-		return 0;
+		Connection conn = cf.getConnection();
+		int affectedRows = 0;
+		String sql = "delete from eventform where employeeId=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, id);
+		affectedRows = pstmt.executeUpdate();
+		return affectedRows;
 	}
 
 	@Override
 	public void updateForm(Form form, long id) throws SQLException {
+		Connection conn = cf.getConnection();
+		int affectedRows = 0;
 		
 		
 	}
@@ -80,7 +108,18 @@ public class FormDaoImpl implements FormDao{
 
 	@Override
 	public long getFormIdByEmployeeId(long id) throws SQLException {
-	
+		Connection conn = cf.getConnection();
+		String sql = "select * from eventform where employeeId=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		long eventId = 0;
+		if(rs!=null) {
+			while(rs.next()) {
+				eventId = rs.getLong(1);
+				return eventId;
+			}
+		}
 		return 0;
 	}
 

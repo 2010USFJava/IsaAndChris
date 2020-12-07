@@ -1,6 +1,6 @@
 package com.revature.users;
 
-public class Employee extends Users {
+public class Employee {
 	private int employeeId;
 	private String firstName;
 	private String lastName;
@@ -13,9 +13,9 @@ public class Employee extends Users {
 	}
 	
 	//use for login
-	public Employee(String username, String password) {
-		super(username, password);
-	}
+//	public Employee(String username, String password) {
+//		super(username, password);
+//	}
 
 	public Employee(int employeeId, String firstName, String lastName) {
 		super();
