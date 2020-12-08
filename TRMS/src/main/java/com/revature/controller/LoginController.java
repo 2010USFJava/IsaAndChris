@@ -28,10 +28,6 @@ public class LoginController {
 			Employee employee = loginService.callGetEmployeeByUserId(user.getEmployeeId());
 			System.out.println("LoginController.login employee = " + employee);
 			req.getSession().setAttribute("currentlogin", employee);
-//			Cookie empIdCookie = new Cookie("employeeId", employee.getEmployeeId().toString());
-//			Cookie empTitleCookie = new Cookie("jobTitleCode", Integer.toString(employee.getJobTitleCode()));
-//			res.addCookie(empIdCookie);
-//			res.addCookie(empTitleCookie);
 			return "home.change";
 		}
 	}

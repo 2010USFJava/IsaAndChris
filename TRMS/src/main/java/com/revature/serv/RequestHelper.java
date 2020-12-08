@@ -20,8 +20,7 @@ public class RequestHelper {
 			return HomeController.home(req);
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
-			ApproveController.approve(req);
-			return "/TRMS/approve.change";
+			return ApproveController.approve(req);
 		default:
 			System.out.println("RequestHelper.process case: default");
 			return "html/unsuccessfullogin.html";

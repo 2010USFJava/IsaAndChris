@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.users.Employee;
 
-public class UserController {
+public class SessionController {
 
 	public static void getUserSession(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
