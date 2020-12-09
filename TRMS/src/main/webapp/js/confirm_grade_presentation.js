@@ -1,7 +1,8 @@
 window.onload = function() {
-	console.log("approve_deny_reimbursements.js window.onload");
-	getUser();
+	console.log("confirm_grade_presentation.js window.onload");
+	getRows();
 }
+
 
 getRows = function() {
 	let xhttp = new XMLHttpRequest();
@@ -32,8 +33,6 @@ displayRows = function(dbRows) {
 		tableCell4 = tableRow.insertCell(4);
 		tableCell5 = tableRow.insertCell(5);
 		tableCell6 = tableRow.insertCell(6);
-		tableCell7 = tableRow.insertCell(7);
-		tableCell8 = tableRow.insertCell(8);
 
 		tableCell0.innerHTML = dbRows[i].eventId;
 		tableCell4.innerHTML = dbRows[i].eventLocation;
@@ -47,29 +46,4 @@ displayRows = function(dbRows) {
 		updateButton.innerHTML = "Request More Info";
 		tableCell8.appendChild(updateButton);
 	}
-}
-
-function getUser() {
-	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed");
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			let user = JSON.parse(xhttp.responseText);
-			let name = user.firstName + " " + user.lastName;
-			console.log(user);
-			document.getElementById("usersName").innerHTML = name;
-			switch (user.jobTitleCode) {
-				case 2:
-					getRows();
-					break;
-				case 4:
-					getRows();
-					break;
-			}
-		}
-	}
-	xhttp.open("GET", "http://localhost:8080/TRMS/getsession.json");
-
-	xhttp.send();
 }

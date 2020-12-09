@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.controller.ApproveController;
+import com.revature.controller.ConfirmController;
 import com.revature.controller.HomeController;
 import com.revature.controller.LoginController;
 
@@ -21,6 +22,9 @@ public class RequestHelper {
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
 			return ApproveController.approve(req);
+		case "/TRMS/confirm.change":
+			System.out.println("RequestHelper.process case: confirm.change");
+			return ConfirmController.confirm(req);
 		default:
 			System.out.println("RequestHelper.process case: default");
 			return "html/unsuccessfullogin.html";
