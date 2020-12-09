@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.controller.ApproveController;
 import com.revature.controller.SessionController;
 import com.revature.users.User;
 
@@ -18,6 +19,9 @@ public class JSONRequestHelper {
 		case "/TRMS/getsession.json":
 			System.out.println("JSONRequestHelper.process req = " + req.toString());
 			SessionController.getUserSession(req, res);
+			break;
+		case "/TRMS/getforms.json":
+			SessionController.getForms(req, res);
 			break;
 		default:
 			User user = new User(0, "?", "?");

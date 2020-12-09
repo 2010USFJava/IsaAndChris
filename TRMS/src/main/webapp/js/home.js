@@ -1,6 +1,6 @@
 window.onload = function() {
-	console.log("window.onload");
-	console.log(getUser());
+	console.log("home.js window.onload");
+	getUser();
 }
 
 /*getUser = function() {
@@ -27,17 +27,17 @@ function getUser() {
 			document.getElementById("usersName").innerHTML = name;
 			switch (user.jobTitleCode) {
 				case 1:
-				document.getElementById("employeeMenu").style.display = "block";
-				break;
+					document.getElementById("employeeMenu").style.display = "block";
+					break;
 				case 2:
-				document.getElementById("dirSuperMenu").style.display = "block";
-				break;
+					document.getElementById("dirSuperMenu").style.display = "block";
+					break;
 				case 3:
-				document.getElementById("depHeadMenu").style.display = "block";
-				break;
+					document.getElementById("depHeadMenu").style.display = "block";
+					break;
 				case 4:
-				document.getElementById("benCoMenu").style.display = "block";
-				break;
+					document.getElementById("benCoMenu").style.display = "block";
+					break;
 			}
 		}
 	}
