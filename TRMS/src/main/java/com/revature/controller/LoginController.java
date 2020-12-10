@@ -12,7 +12,7 @@ public class LoginController {
 	public static String login(HttpServletRequest req) {
 		System.out.println("LoginController.login");
 		if (!req.getMethod().equals("POST")) {
-			return "html/index.html";
+			return "FrontEndFiles/HTML/index.html";
 		}
 
 		String username = req.getParameter("username");

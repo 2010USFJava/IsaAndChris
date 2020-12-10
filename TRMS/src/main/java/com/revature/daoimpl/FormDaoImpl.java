@@ -18,6 +18,15 @@ public class FormDaoImpl implements FormDao{
 	
 	public static ConnFactory cf = ConnFactory.getInstance();
 	List<Form> formList = new ArrayList<Form>();
+	
+//	static {
+//		try {
+//			Class.forName("org.postgresql.Driver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 
 	@Override
 	public List<Form> getAllForms() throws SQLException {
@@ -68,7 +77,13 @@ public class FormDaoImpl implements FormDao{
 		pstmt.setBoolean(9, form.isHasApprovalEmail());
 		pstmt.setBoolean(10, form.isApproved());
 		
-		
+		//pstmt.setBinaryStream(12, ); for files
+//		CopyManager cm = new CopyManager();
+//		try(FileOutputStream fop = new FileOutputStream(fileName)
+//				OutputStreamWriter osw = new OutputStreamWriter(fop, StandardCharsets.UTF_8)){
+//			cm.copyOut("copy txt to stdout with delimter as'|'", ows);
+//		}
+//		
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
 		if(affectedRows > 0) {

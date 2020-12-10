@@ -1,42 +1,62 @@
 package com.revature.services;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.Date;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.daoimpl.FormDaoImpl;
+import com.revature.users.Employee;
 import com.revature.users.Form;
 
 public class FormService {
 	static FormDaoImpl fdi = new FormDaoImpl();
 
-	public static void getFormSession(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-//		ObjectMapper om = new ObjectMapper();
-//		om.writeValueAsString(res.get)
+	public Form formSubmission(Form form) {
+		return form;
+//		Timestamp days;
+//		if(form.getSubmission() > days) {
+//			form.setApproved(false);
+//		}else {
+//		 //continue with form
+//		}
+	}
+	
+	public Form formDate(Form form) {
+		Date sub = form.getSubmission();
+		Date fDate = form.getDateAndTime();
 		
+//		Duration dd = Duration.between(sub, fDate);
+		Boolean urgent = false;
+		if()
 		
-		
-		
-		
-		
-		
-		
-//		Form form = (Form) req.getSession().getAttribute("currentuser");
-//		res.getWriter().write(new ObjectMapper().writeValueAsString(form));
-		
-//		PrintWriter printOut = res.getWriter();
-//		res.setContentType("TRMS/json");
-//		res.setCharacterEncoding("UTF-8");
-	//	printOut.print(b);
-//		printOut.flush();
-		//response headers must be set before the response is committed
-		
-		
-		//should of had a session with your login
+		return form;
+	}
+	
+	public double getProjectedAmount(Form form) {
+		double cost = form.getEventCost();
+		if(form.getEventType().equals("seminar")) {
+			double t = Math.multiplyExact((long)cost, (long) .6);
+			//60%
+			return t;
+			
+		}else if(form.getEventType().equals("universitycourse")) {
+			//80%
+		}else if(form.getEventType().equals("certificationpreparationclass")) {
+			//75%
+		}else if(form.getEventType().equals("certificaiton")) {
+			//100%
+		}else if(form.getEventType().equals("technicaltraining")){
+			//90%
+		}else if(form.getEventType().equals("other")) {
+			//30%
+		}else {
+			return 0;
+		}
+		Employee e = new Employee();
+		if(form.getProjectedAmount() > e.getReimburseAmount()) {
+			//adjust to amount available?
+		}
+		return 0;
 	}
 }
 	

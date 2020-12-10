@@ -31,22 +31,12 @@ public interface Events {
 			return eventType;
 		}
 		
-		
-//		@JsonCreator
-//		public static EventType decodeEvent(final String aType) {
-//			return Stream.of(EventType.values()).filter(targetEnum -> targetEnum.eventType.equals(aType)).findFirst().orElse(null);
-//		}
-		
 		@JsonValue
 		public String getCode() {
 			return eventType;
 		}
 	}
-	
 
-	
-	
-	
 	@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 	public enum GradeFormat{
 		@JsonProperty("grade")
@@ -62,14 +52,55 @@ public interface Events {
 			return gradeFormat;
 		}
 		
-//		@JsonCreator
-//		public static GradeFormat decodeEvent(final String bType) {
-//			return Stream.of(GradeFormat.values()).filter(targetEnum -> targetEnum.bType.equals(bType)).findFirst().orElse(null);
-//		}
-		
 		@JsonValue
 		public String getCode() {
 			return gradeFormat;
+		}
+	}
+	
+	public enum PassingGrade{
+		@JsonProperty("a")
+		A("a"),
+		@JsonProperty("b")
+		B("b"),
+		@JsonProperty("c")
+		C("c");
+		private String passingGrade;
+		private PassingGrade(String string) {
+			this.passingGrade = string;
+		}
+		@Override
+		public String toString() {
+			return passingGrade;
+		}
+		
+		@JsonValue
+		public String getCode() {
+			return passingGrade;
+		}
+	}
+	
+	public enum Approval{
+		@JsonProperty("pending")
+		PENDING("pending"),
+		@JsonProperty("approved")
+		APPROVED("approved"),
+		@JsonProperty("denied")
+		DENIED("denied"),
+		@JsonProperty("requestingmoreinformation")
+		REQUESTINGMOREINFORMATION("requestingmoreinformation");
+		private String approval;
+		private Approval(String string) {
+			this.approval = string;
+		}
+		@Override
+		public String toString() {
+			return approval;
+		}
+		
+		@JsonValue
+		public String getCode() {
+			return approval;
 		}
 	}
 }

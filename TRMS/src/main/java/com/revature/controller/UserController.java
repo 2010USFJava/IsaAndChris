@@ -13,11 +13,13 @@ public class UserController {
 	
 	public static void getUserSession(HttpServletRequest req, HttpServletResponse res)
 			throws JsonProcessingException, IOException {
-		System.out.println("UserController.getUserSession session = " + req.getSession());
-		System.out.println("UserController.getUserSession session currentlogin = "
-				+ req.getSession().getAttribute("currentlogin"));
-		Employee employee = (Employee) req.getSession().getAttribute("currentlogin");
-		System.out.println("User from session = " + employee);
-		res.getWriter().write(new ObjectMapper().writeValueAsString(employee));
+			System.out.println("UserController.getUserSession session = " + req.getSession());
+			System.out.println("UserController.getUserSession session currentlogin = "
+					+ req.getSession().getAttribute("currentlogin"));
+			
+			
+			Employee employee = (Employee) req.getSession().getAttribute("currentlogin");
+			System.out.println("User from session = " + employee);
+			res.getWriter().write(new ObjectMapper().writeValueAsString(employee));
 	}
 }

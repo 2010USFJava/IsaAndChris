@@ -1,4 +1,116 @@
-function loadForm(form){
+
+window.onload = function () {
+	console.log("window");
+	//	document.getElementById("form-submit").addEventListener("click", getForm, false);
+	//	document.getElementById("form-submit").addEventListener("click", postForm, false);
+	//document.querySelector('#file-upload2').addEventListener('change', event=>{handleFileUpload(event)});
+	//document.querySelector('#file-upload1').addEventListener('change', event=>{handleFileUpload(event)});
+	var num = document.getElementById("field7");
+	getAmount(num);
+}
+
+document.querySelector('#file-upload2').addEventListener('change', event => { handleFileUpload(event) });
+document.querySelector('#file-upload1').addEventListener('change', event => { handleFileUpload(event) });
+
+const formInput = document.querySelector(".form-style");
+const formButton = document.getElementById("form-btn");
+const formList = document.getElementById("form-style");
+const logForm = document.getElementById("log");
+const formCost = document.getElementById("field7");
+const eventSelect = document.getElementById("event-select");
+const grade = document.getElementById("field8");
+
+//event listeners
+formInput.addEventListener('click', addForm);
+form.addEventListener('submit', logSubmit);
+eventSelect.addEventListener('input', getAmount);
+grade.addEventListener('input', getGrade);
+
+//functions
+function getAmount(event) {
+	let cost = document.getElementById("field7");
+	switch (event) {
+		case "universitycourse":
+			var total = parseFloat((cost.value * .80)).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		case "seminar":
+			var total = parseFloat((cost.value * .60)).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		case "cerificationpreparationclasse":
+			var total = parseFloat((cost.value * .75)).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		case "certification":
+			var total = parseFloat(cost.value).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		case "technicaltraining":
+			var total = parseFloat((cost.value * .90)).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		case "other":
+			var total = parseFloat((cost.value * .60)).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		default:
+			console.log("error in getAmount");
+	}
+}
+
+function getGrade(event){
+	event.preventDefault();
+	switch(event){
+		case "grade":
+			const gradeitem = document.createElement('li');
+			const gradeBox = docoument.createElement('input');
+			gradeBox.formList.add("input type=text");
+			gradeBox.inputMode.addTextarea;
+			gradeitem.appendChild(gradeBox);
+			break;
+		case "presentation":
+			break;
+	}
+}
+
+//get timestamp of submission
+function logSubmit(event) {
+	log.textContent = `Form Submitted! Time stamp: ${event.timestamp}`;
+	event.timestamp = document.getElementById("timestamp");
+	event.preventDefault();
+	loadForm(event);
+}
+
+function filerForm(event){
+	const forms = formList.childNodes;
+	forms.forEach(function(forms){
+		switch(e.target.value){
+			case "viewall":
+				forms.style.display = "flex";
+				break;
+			case "viewpending":
+				if(forms.formList.contains("pending")){
+					formList.style.display = "flex";
+				}else{
+					form.style.display = "none";
+				}
+				break;
+			case "viewnew":
+				//create new
+				break;
+			case "viewpast":
+				if(forms.formList.contains("approved")){
+					formList.style.display = "flex";
+				}else{
+					form.style.display = "none";
+				}
+				break;
+		}
+	});
+}
+
+function loadForm(form) {
 	document.getElementById("field1").innerHTML = form.formFirst;
 	document.getElementById("field2").innerHTML = form.formLast;
 	document.getElementById("field3").innerHTML = form.formEvent;
@@ -9,17 +121,52 @@ function loadForm(form){
 	document.getElementById("field8").innerHTML = form.formFormat;
 	document.getElementById("field9").innerHTML = form.formDescript;
 	document.getElementById("field10").innerHTML = form.formJustif;
+	getAmount(form);
 	//file uploads
 }
 
-function getForm(){
+function getAmount(event) {
+	switch (event) {
+		case "universitycourse":
+			var number = this.value;
+			var total = parseFloat((number * .80)).toFixed(2);
+			total = document.getElementById("pro-amount").value.display;
+			break;
+		case "seminar":
+	}
+}
+
+
+function addTextarea() {
+	var x = document.getElementById("event-select");
+	if (x.style.display === "none") {
+		x.style.display = "block";
+	} else {
+		x.style.display = "none";
+	}
+}
+
+
+
+//trying to preview before upload
+function previewUpload(event) {
+	var reader = new FileReader();
+	reader.onload = function () {
+		var output = document.getElementById('file-upload2');
+		output.src = reader.result;
+	}
+	reader.readAsDataURL(event.target.files[0]);
+
+}
+
+function getForm() {
 	console.log("in get form");
-	
+
 	var xhr = new XMLHttpRequest();
-	
-	xhr.onreadystatechange = function(){
+
+	xhr.onreadystatechange = function () {
 		console.log("in on ready state change");
-		if(xhr.readyState==4 && xhr.status==200){
+		if (xhr.readyState == 4 && xhr.status == 200) {
 			console.log(xhr.responseText);
 			var form = JSON.parse(xhr.responseText);
 			loadForm(form);
@@ -28,30 +175,31 @@ function getForm(){
 	xhr.open("GET", "http://localhost:8080/TRMS/form.change", true);
 	xhr.send();
 }
+//add a functio for file-upload
+const handleFileUpload = event => {
 
-function postForm(){
-	console.log("inside post form");
-	
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		console.log("in readystatechange in post" + xhr.readyState);
-		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
-		}
-	}
-	
-	xhr.open("POST", "http://localhost:8080/TRMS/form.change", true);
-	var payload = jsonBuilder();
-	xhr.send(payload);
+	const files = event.target.files;
+	const formData = new FormData();
+	formData.append('file', files[0]);
+
+	fetch('/saveImage', {
+		method: 'POST',
+		body: formData
+	})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data.path);
+		})
+		.catch(error => {
+			console.error(error);
+		})
 }
 
-//add a functio for file-upload
-
 //function to convert all element data to json for POST
-function jsonBuilder(){
+function jsonBuilder() {
 	var data = document.getElementById("form").elements;
 	var dataObj = {};
-	for(let i = 0; i < elements.length; i++){
+	for (let i = 0; i < elements.length; i++) {
 		var item = elements.item(i);
 		dataObj[item.name] = item.value;
 		console.log(dataObj);
@@ -61,12 +209,6 @@ function jsonBuilder(){
 	return json;
 }
 
-
-window.onload = function() {
-	console.log("window");
-	document.getElementById("form-submit").addEventListener("click", getForm, false);
-	document.getElementById("form-submit").addEventListener("click", postForm, false);
-}
 
 
 /*
@@ -127,7 +269,7 @@ xhr.open("POST", "http://localhost:8080/TRMS/FrontEndFiles/HTML/form.html");
 xhr.send();
 */
 
-/*		
+/*
 xhr.onload.onprogress = function(files){
 	if(files.leng){
 		var percentComplete = (event.loaded / event.total) * 100;
@@ -152,10 +294,10 @@ window.onload = function(){
 async function formSubmit(event){
 	//log.textContent =  `From Submitted! Timestamp: ${event.timeStamp}`;
 	event.preventDefault();
-	
+
 	const form = event.currentTarget();
 	const url = form.action;
-	
+
 	try{
 		const formData = new FormData(form);
 		const responseData = await postFormDataAsJson({url, formData});
@@ -168,7 +310,7 @@ async function formSubmit(event){
 async function postFormDataAsJson({url, formData}){
 	const plainFormData = Object.formEntries(formData.entries());
 	const formDataJsonString = JSON.stringify(plainFormData);
-	
+
 	const fetchOptions = {
 		method: "POST",
 		headers: {
@@ -177,20 +319,20 @@ async function postFormDataAsJson({url, formData}){
 		},
 		body: formDataJsonString,
 	};
-	
+
 	const response = await fetch(url, fetchOptions);
-	
+
 	if(!response.ok){
 		const errorMsg = await response.text();
 		throw new Error(errorMsg);
 	}
-	
+
 	return response.json();
 }
 
 /*
 function getForm(){
-	
+
 	fetch('http://local:8080/TRMS/getsession.json',{
 		method: "POST",
 		credentials: 'include'
