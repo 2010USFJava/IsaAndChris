@@ -1,21 +1,15 @@
 package com.revature.users;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-public class Form implements Events, Serializable {
-	private static final long serialVersionUID = 2697241077966009312L;
+public class Form implements Events {
 	private long eventId;
 	private long employeeId;
-//	//(yyyy,MMM,dd) y= year(exDisplay: 2020); M= month in year(exDisplay: Jul); d= day in month(exDisplay: 04)
-//	private SimpleDateFormat dateOfEvent;//figure out how to use
-//	//(hh,mm,a) hh= hour in am/pm (1-12) (exDisplay: 11:); mm= minutes in hour (exDisplay: :22); a= am/pm marker
-//	private SimpleDateFormat timeOfEvent;
-	//Employee employee; //do we need this for basic information?
 	Employee employee;
 	private EventType eventType;
 	@JsonProperty("dateAndTime")
@@ -23,11 +17,16 @@ public class Form implements Events, Serializable {
 	private String eventLocation;
 	private double eventCost;
 	private GradeFormat gradeFormat;
-
 	private String description;
 	private String justification;
 	private boolean hasApprovalEmail;
-	private boolean isApproved = false;
+//	private boolean isApproved = false;
+	private Approval approval;
+	
+	private Timestamp submission;
+	private double projectedAmount; //read only field
+	private PassingGrade passingGrade;
+	
 	
 	public Form() {
 		super();
@@ -36,7 +35,8 @@ public class Form implements Events, Serializable {
 	@JsonCreator
 	public Form(long eventId, long employeeId, @JsonProperty("eventType") EventType eventType, Timestamp dateAndTime,
 			String eventLocation,  double eventCost, @JsonProperty("gradeFromat") GradeFormat gradeFormat, String description,
-			String justification, boolean hasApprovalEmail, boolean isApproved) {
+			String justification, boolean hasApprovalEmail, Approval approval, Timestamp submission, double projectedAmount,
+			PassingGrade passingGrade) {
 		super();
 		this.eventId = eventId;
 		this.employeeId = employeeId;
@@ -48,7 +48,10 @@ public class Form implements Events, Serializable {
 		this.description = description;
 		this.justification = justification;
 		this.hasApprovalEmail = hasApprovalEmail;
-		this.isApproved = isApproved;
+		this.approval = approval;
+		this.submission = submission;
+		this.projectedAmount = projectedAmount;
+		this.passingGrade = passingGrade;
 	}
 	
 	
@@ -151,22 +154,56 @@ public class Form implements Events, Serializable {
 	}
 
 
-	public boolean isApproved() {
-		return isApproved;
+//	public boolean isApproved() {
+//		return isApproved;
+//	}
+//
+//
+//	public void setApproved(boolean isApproved) {
+//		this.isApproved = isApproved;
+//	}
+
+
+	public Timestamp getSubmission() {
+		return submission;
 	}
 
-
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
+	public Approval getApproval() {
+		return approval;
 	}
 
+	public void setApproval(Approval approval) {
+		this.approval = approval;
+	}
+
+	public void setSubmission(Timestamp submission) {
+		this.submission = submission;
+	}
+
+	public double getProjectedAmount() {
+		return projectedAmount;
+	}
+
+	public void setProjectedAmount(double projectedAmount) {
+		this.projectedAmount = projectedAmount;
+	}
+
+	public PassingGrade getPassingGrade() {
+		return passingGrade;
+	}
+
+	public void setPassingGrade(PassingGrade passingGrade) {
+		this.passingGrade = passingGrade;
+	}
 
 	@Override
 	public String toString() {
-		return "Form [eventId=" + eventId + ", employeeId=" + employeeId +  ", eventType="
+		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", employee=" + employee + ", eventType="
 				+ eventType + ", dateAndTime=" + dateAndTime + ", eventLocation=" + eventLocation + ", eventCost="
 				+ eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description + ", justification="
-				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved=" + isApproved + "]";
+				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved=" + approval
+				+ ", submission=" + submission + ", projectedAmount=" + projectedAmount + ", passingGrade="
+				+ passingGrade + "]";
 	}
 
 

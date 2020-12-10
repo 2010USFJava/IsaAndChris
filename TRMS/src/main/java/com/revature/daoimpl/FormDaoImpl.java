@@ -14,10 +14,19 @@ import com.revature.users.Events.EventType;
 import com.revature.users.Events.GradeFormat;
 import com.revature.util.ConnFactory;
 
-public class FormDaoImpl implements FormDao {
-
+public class FormDaoImpl implements FormDao{
+	
 	public static ConnFactory cf = ConnFactory.getInstance();
 	List<Form> formList = new ArrayList<Form>();
+	
+//	static {
+//		try {
+//			Class.forName("org.postgresql.Driver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 
 	@Override
 	public List<Form> getAllForms() throws SQLException {
@@ -26,10 +35,10 @@ public class FormDaoImpl implements FormDao {
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		Form f = null;
-		while (rs.next()) {
-			f = new Form(rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)), rs.getTimestamp(4),
-					rs.getString(5), rs.getDouble(6), GradeFormat.valueOf(rs.getString(7)), rs.getString(8),
-					rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
+		while(rs.next()) {
+			f = new Form(rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)), rs.getTimestamp(4), 
+				rs.getString(5), rs.getDouble(6), GradeFormat.valueOf(rs.getString(7)), rs.getString(8), rs.getString(9),
+				rs.getBoolean(10), rs.getBoolean(11));
 			formList.add(f);
 		}
 		return formList;
@@ -43,17 +52,17 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setLong(1, id);
 		ResultSet rs = pstmt.executeQuery();
 		Form f = null;
-		while (rs.next()) {
-			f = new Form(rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)), rs.getTimestamp(4),
-					rs.getString(5), rs.getDouble(6), GradeFormat.valueOf(rs.getString(7)), rs.getString(8),
-					rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
+		while(rs.next()) {
+			f = new Form(rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)), rs.getTimestamp(4), 
+					rs.getString(5), rs.getDouble(6), GradeFormat.valueOf(rs.getString(7)), rs.getString(8), rs.getString(9),
+					rs.getBoolean(10), rs.getBoolean(11));
 		}
 		return f;
 	}
 
 	@Override
 	public long insertNewForm(Form form, long id) throws SQLException {
-
+		
 		String sql = "insert into eventform values (DEFAULT,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = cf.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -67,16 +76,23 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setString(8, form.getJustification());
 		pstmt.setBoolean(9, form.isHasApprovalEmail());
 		pstmt.setBoolean(10, form.isApproved());
-
+		
+		//pstmt.setBinaryStream(12, ); for files
+//		CopyManager cm = new CopyManager();
+//		try(FileOutputStream fop = new FileOutputStream(fileName)
+//				OutputStreamWriter osw = new OutputStreamWriter(fop, StandardCharsets.UTF_8)){
+//			cm.copyOut("copy txt to stdout with delimter as'|'", ows);
+//		}
+//		
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
-		if (affectedRows > 0) {
+		if(affectedRows > 0) {
 			ResultSet rs = pstmt.getGeneratedKeys();
-			if (rs.next()) {
+			if(rs.next()) {
 				eventId = rs.getLong(1);
 			}
 		}
-
+		
 		return eventId;
 	}
 
@@ -95,12 +111,13 @@ public class FormDaoImpl implements FormDao {
 	public void updateForm(Form form, long id) throws SQLException {
 		Connection conn = cf.getConnection();
 		int affectedRows = 0;
-
+		
+		
 	}
 
 	@Override
 	public long viewForm(Form form, long id) throws SQLException {
-
+		
 		return 0;
 	}
 
@@ -112,33 +129,13 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setLong(1, id);
 		ResultSet rs = pstmt.executeQuery();
 		long eventId = 0;
-		if (rs != null) {
-			while (rs.next()) {
+		if(rs!=null) {
+			while(rs.next()) {
 				eventId = rs.getLong(1);
 				return eventId;
 			}
 		}
 		return 0;
-	}
-
-	@Override
-	public List<Form> getFormsIdByEmployeeJobCode(int code) throws SQLException {
-		Connection conn = cf.getConnection();
-		String sql = "select * from eventform";
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
-		Form f = null;
-		while (rs.next()) {
-			f = new Form();
-			f.setEventId(rs.getInt(1));
-			System.out.println(f.getEventId());
-//			f.setEventType(EventType.valueOf(rs.getString(3)));
-//			System.out.println(f.getEventType().toString());
-			f.setEventLocation(rs.getString(5));
-			System.out.println(f.getEventLocation());
-			formList.add(f);
-		}
-		return formList;
 	}
 
 }
