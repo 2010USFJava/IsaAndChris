@@ -14,5 +14,6 @@ public interface FormDao {
 	public long viewForm(Form form, long id) throws SQLException;
 	
 	public long getFormIdByEmployeeId(long id) throws SQLException;
+	List<Form> getFormsIdByEmployeeJobCode(int code) throws SQLException;
 	
 }

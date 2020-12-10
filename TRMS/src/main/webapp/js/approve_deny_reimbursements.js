@@ -1,6 +1,6 @@
 window.onload = function() {
 	console.log("approve_deny_reimbursements.js window.onload");
-	getUser();
+	getRows();
 }
 
 getRows = function() {
