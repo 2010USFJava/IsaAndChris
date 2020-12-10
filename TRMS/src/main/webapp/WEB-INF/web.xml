@@ -24,5 +24,4 @@
 		<servlet-name>JSONMasterServlet</servlet-name>
 		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
-
 </web-app>
