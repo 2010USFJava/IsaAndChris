@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +32,27 @@ public class SessionController {
 			res.getWriter().write(new ObjectMapper().writeValueAsString(formList));
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public static String logout(HttpServletRequest req) {
+		req.getSession().invalidate();
+		System.out.println("SessionController.logout");
+		return "html/index.html";
+	}
+
+	public static boolean enforceLogin(HttpServletRequest req, HttpServletResponse res) {
+		res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		res.setHeader("Pragma", "no-cache");
+		res.setDateHeader("Expires", 0);
+		System.out.println("SessionController.enforceLogin - removed website caching");
+		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("currentlogin") == null) {
+			System.out.println("SessionController.enforceLogin session or attribute currentlogin == null");
+			return false;
+		} else {
+			System.out.println("SessionController.enforceLogin - login validated");
+			return true;
 		}
 	}
 }

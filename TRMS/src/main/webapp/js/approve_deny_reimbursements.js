@@ -19,7 +19,7 @@ displayRows = function(dbRows) {
 		tableCell8 = tableRow.insertCell(8);
 
 		tableCell0.innerHTML = dbRows[i].eventId;
-		tableCell4.innerHTML = dbRows[i].eventLocation;
+		tableCell3.innerHTML = dbRows[i].eventLocation;
 		approveButton = document.createElement("button");
 		approveButton.innerHTML = "Approve";
 		tableCell6.appendChild(approveButton);

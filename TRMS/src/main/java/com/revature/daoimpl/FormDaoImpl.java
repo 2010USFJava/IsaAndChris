@@ -155,11 +155,9 @@ public class FormDaoImpl implements FormDao {
 		while (rs.next()) {
 			f = new Form();
 			f.setEventId(rs.getInt(1));
-			System.out.println(f.getEventId());
 //			f.setEventType(EventType.valueOf(rs.getString(3)));
 //			System.out.println(f.getEventType().toString());
 			f.setEventLocation(rs.getString(5));
-			System.out.println(f.getEventLocation());
 			formList.add(f);
 		}
 		return formList;
