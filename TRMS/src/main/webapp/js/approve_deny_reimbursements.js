@@ -1,23 +1,6 @@
 window.onload = function() {
 	console.log("approve_deny_reimbursements.js window.onload");
-	getRows();
-}
-
-getRows = function() {
-	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed");
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			let rows = JSON.parse(xhttp.responseText);
-			console.log(rows);
-			// Call row creation method
-			displayRows(rows);
-		}
-	}
-	xhttp.open("GET", "http://localhost:8080/TRMS/getforms.json");
-
-	xhttp.send();
+	makeRequest("http://localhost:8080/TRMS/getforms.json", displayRows); // In xhr.js
 }
 
 // Implement row creation method
@@ -47,29 +30,4 @@ displayRows = function(dbRows) {
 		updateButton.innerHTML = "Request More Info";
 		tableCell8.appendChild(updateButton);
 	}
-}
-
-function getUser() {
-	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed");
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			let user = JSON.parse(xhttp.responseText);
-			let name = user.firstName + " " + user.lastName;
-			console.log(user);
-			document.getElementById("usersName").innerHTML = name;
-			switch (user.jobTitleCode) {
-				case 2:
-					getRows();
-					break;
-				case 4:
-					getRows();
-					break;
-			}
-		}
-	}
-	xhttp.open("GET", "http://localhost:8080/TRMS/getsession.json");
-
-	xhttp.send();
 }
