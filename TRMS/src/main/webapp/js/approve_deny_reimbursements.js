@@ -8,12 +8,7 @@ displayRows = function(dbRows) {
 	table = document.getElementById("reimburseReqTable");
 	for (var i = dbRows.length - 1; i > -1; i--) {
 		tableRow = table.insertRow(1);
-		tableCell0 = tableRow.insertCell(0);
-		tableCell1 = tableRow.insertCell(1);
-		tableCell2 = tableRow.insertCell(2);
-		tableCell3 = tableRow.insertCell(3);
-		tableCell4 = tableRow.insertCell(4);
-		tableCell5 = tableRow.insertCell(5);
+		fillRow(tableRow, dbRows[i]);
 		tableCell6 = tableRow.insertCell(6);
 		tableCell7 = tableRow.insertCell(7);
 		tableCell8 = tableRow.insertCell(8);
