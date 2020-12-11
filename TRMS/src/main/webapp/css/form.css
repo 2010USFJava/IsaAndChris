@@ -31,7 +31,16 @@ header, form{
 	padding-bottom: 1rem;
 }
 
-form input, form button{
+.form-control li{
+	width: fit-content;
+	margin: 0;
+}
+textarea{
+	display: inline-flexbox;
+	
+}
+
+form button{
 	padding: 0.5rem;
 	font-size: 1rem;
 	border: none;
@@ -46,7 +55,6 @@ form input, form button{
 
 .form-style li{
 	padding: 0;
-	display: block;
 	list-style: none;
 	margin: 10px 0 0 0;
 }

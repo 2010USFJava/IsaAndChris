@@ -22,8 +22,6 @@ public class Form implements Events {
 	private boolean hasApprovalEmail;
 //	private boolean isApproved = false;
 	private Approval approval;
-	
-	private Timestamp submission;
 	private double projectedAmount; //read only field
 	private PassingGrade passingGrade;
 	
@@ -35,7 +33,7 @@ public class Form implements Events {
 	@JsonCreator
 	public Form(long eventId, long employeeId, @JsonProperty("eventType") EventType eventType, Timestamp dateAndTime,
 			String eventLocation,  double eventCost, @JsonProperty("gradeFromat") GradeFormat gradeFormat, String description,
-			String justification, boolean hasApprovalEmail, Approval approval, Timestamp submission, double projectedAmount,
+			String justification, boolean hasApprovalEmail, Approval approval, double projectedAmount,
 			PassingGrade passingGrade) {
 		super();
 		this.eventId = eventId;
@@ -49,7 +47,6 @@ public class Form implements Events {
 		this.justification = justification;
 		this.hasApprovalEmail = hasApprovalEmail;
 		this.approval = approval;
-		this.submission = submission;
 		this.projectedAmount = projectedAmount;
 		this.passingGrade = passingGrade;
 	}
@@ -164,10 +161,6 @@ public class Form implements Events {
 //	}
 
 
-	public Timestamp getSubmission() {
-		return submission;
-	}
-
 	public Approval getApproval() {
 		return approval;
 	}
@@ -176,9 +169,6 @@ public class Form implements Events {
 		this.approval = approval;
 	}
 
-	public void setSubmission(Timestamp submission) {
-		this.submission = submission;
-	}
 
 	public double getProjectedAmount() {
 		return projectedAmount;
@@ -202,7 +192,7 @@ public class Form implements Events {
 				+ eventType + ", dateAndTime=" + dateAndTime + ", eventLocation=" + eventLocation + ", eventCost="
 				+ eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description + ", justification="
 				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved=" + approval
-				+ ", submission=" + submission + ", projectedAmount=" + projectedAmount + ", passingGrade="
+				+ ", projectedAmount=" + projectedAmount + ", passingGrade="
 				+ passingGrade + "]";
 	}
 

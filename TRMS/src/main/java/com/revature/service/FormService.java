@@ -1,15 +1,26 @@
 package com.revature.service;
 
-import java.time.Duration;
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.util.Date;
 
+import com.revature.daoimpl.AttachmentDaoImpl;
 import com.revature.daoimpl.FormDaoImpl;
+import com.revature.users.Attachment;
 import com.revature.users.Employee;
+import com.revature.users.Events.EventType;
 import com.revature.users.Form;
 
 public class FormService {
 	static FormDaoImpl fdi = new FormDaoImpl();
+	static AttachmentDaoImpl adi = new AttachmentDaoImpl();
+	
+	public void insertMultipleAttachments(Attachment a, Attachment b) {
+		try {
+			adi.insertMultipleAttachments(a, b);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Form formSubmission(Form form) {
 		return form;
@@ -22,7 +33,7 @@ public class FormService {
 	}
 	
 	public Form formDate(Form form) {
-		Date sub = form.getSubmission();
+//		Date sub = form.getSubmission();
 		Date fDate = form.getDateAndTime();
 		
 //		Duration dd = Duration.between(sub, fDate);
@@ -32,32 +43,53 @@ public class FormService {
 		return form;
 	}
 	
-	public double getProjectedAmount(Form form) {
+	public Form getProjectedAmount(Form form) {
 		double cost = form.getEventCost();
-		if(form.getEventType().equals("seminar")) {
-			double t = Math.multiplyExact((long)cost, (long) .6);
+		double projected;
+		if(form.getEventType().equals(EventType.SEMINAR)) {
 			//60%
-			return t;
-			
-		}else if(form.getEventType().equals("universitycourse")) {
+			projected = (cost * .60);
+			form.setProjectedAmount(projected);
+		}else if(form.getEventType().equals(EventType.UNIVERSITYCOURSE)) {
 			//80%
-		}else if(form.getEventType().equals("certificationpreparationclass")) {
+			projected = (cost * .80);
+			form.setProjectedAmount(projected);
+		}else if(form.getEventType().equals(EventType.CERTIFICATIONPREPARATIONCLASS)) {
 			//75%
-		}else if(form.getEventType().equals("certificaiton")) {
+			projected = (cost *.75);
+			form.setProjectedAmount(projected);
+		}else if(form.getEventType().equals(EventType.CERTIFICAITON)) {
 			//100%
-		}else if(form.getEventType().equals("technicaltraining")){
+			projected = cost;
+			form.setProjectedAmount(projected);
+		}else if(form.getEventType().equals(EventType.TECHNICALTRAINING)){
 			//90%
-		}else if(form.getEventType().equals("other")) {
+			projected = (cost * .90);
+			form.setProjectedAmount(projected);
+		}else if(form.getEventType().equals(EventType.OTHER)) {
 			//30%
+			projected = (cost * .30);
+			form.setProjectedAmount(projected);
 		}else {
-			return 0;
+			System.out.println("this didn't work");
 		}
-		Employee e = new Employee();
-		if(form.getProjectedAmount() > e.getReimburseAmount()) {
-			//adjust to amount available?
-		}
-		return 0;
+//		Employee e = new Employee();
+//		if(form.getProjectedAmount() > e.getReimburseAmount()) {
+//			//adjust to amount available?
+//		}
+		return form;
 	}
 }
 	
 	
+
+
+
+
+
+
+
+
+
+
+

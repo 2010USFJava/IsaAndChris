@@ -103,4 +103,24 @@ public interface Events {
 			return approval;
 		}
 	}
+	
+	public enum FileName{
+		@JsonProperty("eventrelateddocument")
+		EVENTRELATEDDOCUMENT("eventrelateddocument"),
+		@JsonProperty("approvaldocument")
+		APPROVALDOCUMENT("approvaldocument");
+		private String fileName;
+		private FileName(String string) {
+			this.fileName = string;
+		}
+		@Override
+		public String toString() {
+			return fileName;
+		}
+		
+		@JsonValue
+		public String getCode() {
+			return fileName;
+		}
+	}
 }

@@ -21,7 +21,7 @@ public class RequestHelper {
 			System.out.println("RequestHelper.process case: home.change");
 			return HomeController.home(req);
 		case "/TRMS/newform.change":
-			System.out.println("RequestHelper.process case: form.change");
+			System.out.println("RequestHelper.process case: newform.change");
 			return FormController.form(req);
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");

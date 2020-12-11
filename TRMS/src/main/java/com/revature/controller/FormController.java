@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +17,10 @@ import com.revature.daoimpl.FormDaoImpl;
 import com.revature.service.ApproveService;
 import com.revature.service.FormService;
 import com.revature.users.Attachment;
+import com.revature.users.Employee;
 import com.revature.users.Events.Approval;
 import com.revature.users.Events.EventType;
+import com.revature.users.Events.FileName;
 import com.revature.users.Events.GradeFormat;
 import com.revature.users.Events.PassingGrade;
 import com.revature.users.Form;
@@ -36,27 +37,19 @@ public class FormController {
 		if (!req.getMethod().equals("POST")) {
 			return "html/newform.html";// ????????
 		}
-
 		
-		if (req.getSession() == null) {
+		Employee em = (Employee) req.getSession().getAttribute("currentlogin");
+		Integer employeeId = em.getEmployeeId();
+		
+		if (employeeId == null) {
 			return "wrongcreds.change";
 		}else {
 			ObjectMapper om = new ObjectMapper();
-			req.getSession().getAttribute("currentuser");
 		try {
 			//this serializes the the input from request
 			String eventStr = om.writeValueAsString(req.getParameter("field3"));
 			//this deserializes the input to make it into an enum for EventType
-			EventType event = om.readValue(eventStr, EventType.class);			
-			
-			//this serializes the input from request
-			String formatStr = om.writeValueAsString(req.getParameter("field8"));
-			//this deserializes the input to make it into an enum for GradeFormat
-			GradeFormat format = om.readValue(formatStr, GradeFormat.class);
-			
-			String passGrd = om.writeValueAsString(req.getParameter("grade-pass"));
-			PassingGrade grade = om.readValue(passGrd, PassingGrade.class);
-			
+			EventType event = om.readValue(eventStr, EventType.class);	
 			
 			//this has value of ("2020-12-10") very good serialize
 			String dateTimeStr = om.writeValueAsString(req.getParameter("field4"));
@@ -65,46 +58,67 @@ public class FormController {
 			//convert date java.util to timestamp java.sql
 			Timestamp dateAndTime = new Timestamp(dateTimeDate.getTime());
 
+			String eventLocation = req.getParameter("field5");
+			double eventCost = Double.parseDouble(req.getParameter("field6"));
 			
+			//this serializes the input from request
+			String formatStr = om.writeValueAsString(req.getParameter("field7"));
+			//this deserializes the input to make it into an enum for GradeFormat
+			GradeFormat format = om.readValue(formatStr, GradeFormat.class);
 			
-			String eventLocation = req.getParameter("field6");
-			double eventCost = Double.parseDouble(req.getParameter("field7"));
+//			String passGrd = om.writeValueAsString(req.getParameter("field8"));
+//			PassingGrade grade;
+//			if(passGrd.equals("true")) {
+//				grade = om.readValue(passGrd, PassingGrade.class);
+//			}
+//			PassingGrade grade = om.readValue(passGrd, PassingGrade.class);
+	
 			String description = req.getParameter("field9");
 			String justification = req.getParameter("field10");
 			
 			//BROKEN
-			double projectedAmount = 0 ;//Double.parseDouble(req.getParameter("pro-amount"));
-			String subTime= om.writeValueAsString(req.getParameter("timestamp"));
-			Date subTime2 = om.readValue(subTime, Date.class);
-			Timestamp submission = new Timestamp(subTime2.getTime());
+//			String pro = req.getParameter("disabledInput");
+//			double projectedAmount = Double.parseDouble(pro);
+			
+			//BROKEN
+//			String subTime= om.writeValueAsString(req.getParameter("timestamp"));
+//			Date subTime2 = om.readValue(subTime, Date.class);
+//			Timestamp submission = new Timestamp(subTime2.getTime());
+			
+			//puts byte infromation into a byte[] - compatiable with bytea in postgresql
+			byte[] file01 = om.writeValueAsBytes(req.getParameter("file-upload1"));
+			byte[] file02 = om.writeValueAsBytes(req.getParameter("file-upload2"));
+			
+			Boolean hasApprovalEmail;
+			if(file02 != null) {
+				hasApprovalEmail = true;
+			}else {
+				hasApprovalEmail = false;
+			}
 			
 			Approval appr = Approval.PENDING;
 			
-			//puts byte infromation into a byte[] - compatiable with bytea in postgresql
-			byte[] file = om.writeValueAsBytes(req.getParameter("file-upload2"));
+
+			Form form = new Form(0, employeeId, event, dateAndTime, eventLocation, eventCost, format, description, justification,
+					hasApprovalEmail, appr, 0, null);
+			System.out.println(form);
+//			form = fServ.getProjectedAmount(form);
+//			System.out.println(form);
 			
-			Attachment a = new Attachment(0, "filename", file);
-			long attachId = adi.insertNewAttachment(a);
-			adi.getAttachmentById(attachId);
+			long eventId = fdi.insertNewForm(form, employeeId);
+
+			
 		
-			Long subimssion = req.getSession().getCreationTime();
-			//get projected amount
-			//get passinggrade
-			
-			Boolean hasApprovalEmail;
-			if (file != null) {
+			Attachment a1;
+			Attachment a2;
+			if(file02 != null) {
 				hasApprovalEmail = true;
-			} else {
+//				 a1 = new Attachment(0, FileName.EVENTRELATEDDOCUMENT, file01, false, eventId);
+				 a2 = new Attachment(0, FileName.APPROVALDOCUMENT, file02, false, employeeId);
+				adi.insertNewAttachment(a2);
+			}else if(file02 == null) {
 				hasApprovalEmail = false;
 			}
-
-			Form form = new Form(0, 0, event, dateAndTime, eventLocation, eventCost, format, description, justification,
-					hasApprovalEmail, appr, submission, 0, grade);
-			double projectedAmount2 = fServ.getProjectedAmount(form);
-			System.out.println(form);
-			
-			long eventId = fdi.insertNewForm(form, form.getEventId());
-			
 			
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
