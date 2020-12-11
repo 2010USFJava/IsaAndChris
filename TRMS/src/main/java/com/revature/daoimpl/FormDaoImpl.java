@@ -67,7 +67,7 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public long insertNewForm(Form form, long id) throws SQLException {
-		String sql = "insert into eventform values (DEFAULT,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into eventform values (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = cf.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		pstmt.setLong(1, form.getEmployeeId());
@@ -81,17 +81,10 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setBoolean(9, form.isHasApprovalEmail());
 		pstmt.setString(10, form.getApproval().toString());
 		pstmt.setDouble(11, form.getProjectedAmount());
-//		pstmt.setString(12, 0);
-	//	pstmt.setString(12, form.getPassingGrade().toString());
-//		pstmt.setBoolean(10, form.isApproved());
+		pstmt.setString(12, form.getPassingGrade().toString());
+		
 
-		// pstmt.setBinaryStream(12, ); for files
-//		CopyManager cm = new CopyManager();
-//		try(FileOutputStream fop = new FileOutputStream(fileName)
-//				OutputStreamWriter osw = new OutputStreamWriter(fop, StandardCharsets.UTF_8)){
-//			cm.copyOut("copy txt to stdout with delimter as'|'", ows);
-//		}
-//		
+
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
 		if (affectedRows > 0) {

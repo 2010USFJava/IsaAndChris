@@ -78,3 +78,11 @@ form button{
 	position: relative;
 	overflow: hidden;
 }
+
+.form-check-label{
+	display: none;
+}
+
+.form-check-input{
+	display: none;
+}
