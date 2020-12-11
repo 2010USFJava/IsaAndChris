@@ -7,6 +7,7 @@ import com.revature.controller.ApproveController;
 import com.revature.controller.ConfirmController;
 import com.revature.controller.HomeController;
 import com.revature.controller.LoginController;
+import com.revature.controller.SessionController;
 
 public class RequestHelper {
 
@@ -18,13 +19,16 @@ public class RequestHelper {
 			return LoginController.login(req, res);
 		case "/TRMS/home.change":
 			System.out.println("RequestHelper.process case: home.change");
-			return HomeController.home(req);
+			return HomeController.home(req, res);
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
-			return ApproveController.approve(req);
+			return ApproveController.approve(req, res);
 		case "/TRMS/confirm.change":
 			System.out.println("RequestHelper.process case: confirm.change");
-			return ConfirmController.confirm(req);
+			return ConfirmController.confirm(req, res);
+		case "/TRMS/logout.change":
+			System.out.println("RequestHelper.process case: logout.change");
+			return SessionController.logout(req);
 		default:
 			System.out.println("RequestHelper.process case: default");
 			return "html/unsuccessfullogin.html";

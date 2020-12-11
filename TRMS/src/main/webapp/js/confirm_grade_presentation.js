@@ -22,7 +22,7 @@ fillRow = function(tableRow, dbRow) {
 	tableCell4 = tableRow.insertCell(4);
 	tableCell5 = tableRow.insertCell(5);
 	tableCell0.innerHTML = dbRow.eventId;
-	tableCell4.innerHTML = dbRow.eventLocation;
+	tableCell3.innerHTML = dbRow.eventLocation;
 }
 
 displayRowsAndBenCoButtons = function(dbRows) {
