@@ -20,7 +20,7 @@ public class RequestHelper {
 			return LoginController.login(req, res);
 		case "/TRMS/home.change":
 			System.out.println("RequestHelper.process case: home.change");
-			return HomeController.home(req);
+			return HomeController.home(req, res);
 		case "/TRMS/newform.change":
 			System.out.println("RequestHelper.process case: newform.change");
 			return FormController.form(req);
