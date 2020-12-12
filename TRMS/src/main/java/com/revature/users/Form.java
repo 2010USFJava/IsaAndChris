@@ -25,6 +25,7 @@ public class Form implements Events, Serializable {
 	private Approval approval;
 	private double projectedAmount; //read only field
 	private PassingGrade passingGrade;
+	private int approvalLevel;
 	
 	
 	public Form() {
@@ -35,7 +36,7 @@ public class Form implements Events, Serializable {
 	public Form(long eventId, long employeeId, @JsonProperty("eventType") EventType eventType, Timestamp dateAndTime,
 			String eventLocation,  double eventCost, @JsonProperty("gradeFromat") GradeFormat gradeFormat, String description,
 			String justification, boolean hasApprovalEmail, Approval approval, double projectedAmount,
-			PassingGrade passingGrade) {
+			PassingGrade passingGrade, int approvalLevel) {
 		super();
 		this.eventId = eventId;
 		this.employeeId = employeeId;
@@ -50,6 +51,7 @@ public class Form implements Events, Serializable {
 		this.approval = approval;
 		this.projectedAmount = projectedAmount;
 		this.passingGrade = passingGrade;
+		this.approvalLevel = approvalLevel;
 	}
 	
 	
@@ -187,14 +189,22 @@ public class Form implements Events, Serializable {
 		this.passingGrade = passingGrade;
 	}
 
+	public int getApprovalLevel() {
+		return approvalLevel;
+	}
+
+	public void setApprovalLevel(int approvalLevel) {
+		this.approvalLevel = approvalLevel;
+	}
+
 	@Override
 	public String toString() {
-		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", eventType="
+		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", employee=" + employee + ", eventType="
 				+ eventType + ", dateAndTime=" + dateAndTime + ", eventLocation=" + eventLocation + ", eventCost="
 				+ eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description + ", justification="
-				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved=" + approval
-				+ ", projectedAmount=" + projectedAmount + ", passingGrade="
-				+ passingGrade + "]";
+				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", approval=" + approval
+				+ ", projectedAmount=" + projectedAmount + ", passingGrade=" + passingGrade + ", approvalLevel="
+				+ approvalLevel + "]";
 	}
 
 

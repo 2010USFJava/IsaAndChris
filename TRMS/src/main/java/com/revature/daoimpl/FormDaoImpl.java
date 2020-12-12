@@ -82,6 +82,7 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setString(10, form.getApproval().toString());
 		pstmt.setDouble(11, form.getProjectedAmount());
 		pstmt.setString(12, form.getPassingGrade().toString());
+		pstmt.setInt(13, form.getApprovalLevel());
 	
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
