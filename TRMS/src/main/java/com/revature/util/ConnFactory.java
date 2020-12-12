@@ -26,8 +26,8 @@ public class ConnFactory {
 		Connection conn = null;
 		Properties prop = new Properties();
 		String url = "jdbc:postgresql://isaandchrisdb.c8xt2vsyvgm5.us-east-2.rds.amazonaws.com:5432/TRMS_Database?currentSchema=reimbursement";
-		String username = "protossarchon";
-		String password = "poweroverwhelming";
+		String username = "project1";
+		String password = "database";
 		try {
 //			prop.load(new FileReader("C:\\Users\\chris\\Documents\\GitHub\\IsaAndChris\\TRMS\\database.properties"));
 //			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"),

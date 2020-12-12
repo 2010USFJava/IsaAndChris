@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.controller.ApproveController;
 import com.revature.controller.ConfirmController;
+import com.revature.controller.FormController;
 import com.revature.controller.HomeController;
 import com.revature.controller.LoginController;
 import com.revature.controller.SessionController;
@@ -20,6 +21,9 @@ public class RequestHelper {
 		case "/TRMS/home.change":
 			System.out.println("RequestHelper.process case: home.change");
 			return HomeController.home(req, res);
+		case "/TRMS/newform.change":
+			System.out.println("RequestHelper.process case: newform.change");
+			return FormController.form(req);
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
 			return ApproveController.approve(req, res);

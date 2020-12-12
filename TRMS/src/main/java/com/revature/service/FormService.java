@@ -1,15 +1,27 @@
 package com.revature.service;
 
-import java.time.Duration;
-import java.time.LocalDate;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 
+import com.revature.daoimpl.AttachmentDaoImpl;
 import com.revature.daoimpl.FormDaoImpl;
+import com.revature.users.Attachment;
 import com.revature.users.Employee;
+import com.revature.users.Events.EventType;
 import com.revature.users.Form;
 
 public class FormService {
 	static FormDaoImpl fdi = new FormDaoImpl();
+	static AttachmentDaoImpl adi = new AttachmentDaoImpl();
+	
+	public void insertMultipleAttachments(Attachment a, Attachment b) {
+		try {
+			adi.insertMultipleAttachments(a, b);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Form formSubmission(Form form) {
 		return form;
@@ -21,43 +33,27 @@ public class FormService {
 //		}
 	}
 	
-	public Form formDate(Form form) {
-		Date sub = form.getSubmission();
-		Date fDate = form.getDateAndTime();
+	public boolean formDate(long eventId, Timestamp duration) {
+		System.out.println(duration);
 		
-//		Duration dd = Duration.between(sub, fDate);
-		Boolean urgent = false;
-//		if()
-		
-		return form;
+		return false;
 	}
 	
-	public double getProjectedAmount(Form form) {
-		double cost = form.getEventCost();
-		if(form.getEventType().equals("seminar")) {
-			double t = Math.multiplyExact((long)cost, (long) .6);
-			//60%
-			return t;
-			
-		}else if(form.getEventType().equals("universitycourse")) {
-			//80%
-		}else if(form.getEventType().equals("certificationpreparationclass")) {
-			//75%
-		}else if(form.getEventType().equals("certificaiton")) {
-			//100%
-		}else if(form.getEventType().equals("technicaltraining")){
-			//90%
-		}else if(form.getEventType().equals("other")) {
-			//30%
-		}else {
-			return 0;
-		}
-		Employee e = new Employee();
-		if(form.getProjectedAmount() > e.getReimburseAmount()) {
-			//adjust to amount available?
-		}
-		return 0;
+	public Form getProjectedAmount(Form form) {
+		
+		return form;
 	}
 }
 	
 	
+
+
+
+
+
+
+
+
+
+
+
