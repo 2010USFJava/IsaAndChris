@@ -33,28 +33,35 @@
 							Reimbursement</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/TRMS/form.change">View All</a>
-							<a class="dropdown-item" href="/TRMS/nerform.change">New Request</a>
-							<a class="dropdown-item" href="#">Update Request</a>
+							<a class="dropdown-item" href="/TRMS/newform.change">New Request</a>
+							<a class="dropdown-item" href="/TRMS/grade_presentation.change">Update Request</a>
 						</div>
 					</li>
 				</ul>
 			</div>
 	</nav>
 	<div class="container">
-		<h2>Your Reimbursement Requests</h2>
+		<h2>Submission</h2>
 		<div class="row">
 			<div class="col">
-				<table class="table table-striped text-white" id="employee-table">
-					<tr>
-						<th>Request Id</th>
-						<th>First Name</th>
-						<th>Event Location</th>
-						<th>Event Date and Time</th>
-						<th>Event Type</th>
-						<th>Cost of Event</th>
-						<th>Projected Reimbursement Amount</th>
-					</tr>
-				</table>
+				<form class="form-container">
+                    <ul class="list-unstyled">
+                         <li>
+                              <label  for="file-upload2">Upload Presentation Here:</label> 
+                                <input type="file" id="file-upload2" name="file-upload2" class="form-control" accept=".pdf, .png,
+                                 .jpeg, .txt, .doc, .jpg, .msg" multiple />
+                                    <!--  onchange="previewUpload(event)"
+                                    <input type="submit" value="Submit" id="form-submit" class="submit-btn" /> -->
+                        </li>
+                        <li>
+                            <label for="grade-input">Submit Grade Here:</label>
+                            <input type="text" id="grade-input" name="grade-input" class="form-text">
+                        </li>
+                        <li>
+                            <input type="submit"  class="btn btn-outline-secondary"></button>
+                        </li>
+                    </ul>
+                </form>
 			</div>
 		</div>
 	</div>
@@ -65,7 +72,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
-<script type="text/javascript" src="./JS/form.js"></script>
+<script type="text/javascript" src="./JS/grade_presentation.js"></script>
 </body>
 
 </html>

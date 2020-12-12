@@ -33,6 +33,9 @@ public class RequestHelper {
 		case "/TRMS/logout.change":
 			System.out.println("RequestHelper.process case: logout.change");
 			return SessionController.logout(req);
+		case "/TRMS/form.change":
+			System.out.println("RequestHelper.process case: form.change");
+			return FormController.view(req, res);
 		default:
 			System.out.println("RequestHelper.process case: default");
 			return "html/unsuccessfullogin.html";
