@@ -18,8 +18,8 @@ displayRows = function(dbRows) {
 		approveButton = document.createElement("button");
 		approveButton.innerHTML = "Approve";
 		tableCell6.appendChild(approveButton);
-		approveButton.onclick = (function(eventId, approvallevel) {
-			postBody("/TRMS/eventapproval.change", "eventId=" + eventId + "&approvallevel=" + approvallevel);
+		(function(eventId, approvallevel) {
+			approveButton.onclick = postBody("/TRMS/eventapproval.change", "eventId=" + eventId + "&approvallevel=" + approvallevel);
 		}(dbRows[i].eventId, dbRows[i].approvallevel));
 		denyButton = document.createElement("button");
 		denyButton.innerHTML = "Deny";

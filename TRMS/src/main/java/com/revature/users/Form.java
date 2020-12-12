@@ -1,13 +1,14 @@
 package com.revature.users;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-public class Form implements Events {
+public class Form implements Events, Serializable {
+	private static final long serialVersionUID = -8753132425902261550L;
 	private long eventId;
 	private long employeeId;
 	Employee employee;
