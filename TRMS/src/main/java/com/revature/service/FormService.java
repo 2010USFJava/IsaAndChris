@@ -23,15 +23,6 @@ public class FormService {
 		}
 	}
 
-	public Form formSubmission(Form form) {
-		return form;
-//		Timestamp days;
-//		if(form.getSubmission() > days) {
-//			form.setApproved(false);
-//		}else {
-//		 //continue with form
-//		}
-	}
 	
 	public boolean formDate(long eventId, Timestamp duration) {
 		System.out.println(duration);
@@ -39,10 +30,7 @@ public class FormService {
 		return false;
 	}
 	
-	public Form getProjectedAmount(Form form) {
-		
-		return form;
-	}
+	
 }
 	
 	

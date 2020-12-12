@@ -33,7 +33,7 @@ public class FormController {
 	static FormService fServ = new FormService();
 	static ApproveService aServ = new ApproveService();
 
-	public static String form(HttpServletRequest req) {
+	public static String form(HttpServletRequest req, HttpServletResponse res) {
 		if (!req.getMethod().equals("POST")) {
 			return "html/newform.html";// ????????
 		}
@@ -109,8 +109,7 @@ public class FormController {
 			Form form = new Form(0, employeeId, event, dateAndTime, eventLocation, eventCost, format, description, justification,
 					hasApprovalEmail, approval, projectedAmount, grade);
 			System.out.println(form);
-//			form = fServ.getProjectedAmount(form);
-//			System.out.println(form);
+
 			
 			long eventId = fdi.insertNewForm(form, employeeId);
 
