@@ -14,3 +14,20 @@ makeRequest = function(address, func) {
 
 	xhttp.send();
 }
+
+postBody = function(address, body) {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed to " + xhttp.readyState + ", and status " + xhttp.status);
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			let result = JSON.parse(xhttp.responseText);
+			console.log("Result:")
+			console.log(result);
+			func(result);
+		}
+	}
+	xhttp.open("POST", address);
+
+	xhttp.send(body);
+}

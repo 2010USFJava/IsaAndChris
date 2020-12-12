@@ -1,6 +1,8 @@
 package com.revature.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,15 @@ public class ApproveController {
 			return "html/approve_deny_reimbursements.html";
 		} else {
 			return "html/index.html";
+		}
+	}
+	
+	public static void updateApproval(HttpServletRequest req, HttpServletResponse res) {
+		try {
+			System.out.println(req.getReader().lines().collect(Collectors.joining("&")));
+			// Update DB
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

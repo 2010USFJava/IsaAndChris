@@ -23,6 +23,10 @@ public class RequestHelper {
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
 			return ApproveController.approve(req, res);
+		case "/TRMS/eventapproval.change":
+			System.out.println("RequestHelper.process case: eventapproval.change");
+			ApproveController.updateApproval(req, res);
+			return "";
 		case "/TRMS/confirm.change":
 			System.out.println("RequestHelper.process case: confirm.change");
 			return ConfirmController.confirm(req, res);
