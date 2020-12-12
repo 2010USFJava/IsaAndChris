@@ -188,7 +188,7 @@ public class Form implements Events {
 
 	@Override
 	public String toString() {
-		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", employee=" + employee + ", eventType="
+		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", eventType="
 				+ eventType + ", dateAndTime=" + dateAndTime + ", eventLocation=" + eventLocation + ", eventCost="
 				+ eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description + ", justification="
 				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved=" + approval

@@ -66,24 +66,31 @@ public class FormController {
 			//this deserializes the input to make it into an enum for GradeFormat
 			GradeFormat format = om.readValue(formatStr, GradeFormat.class);
 			
-//			String passGrd = om.writeValueAsString(req.getParameter("field8"));
-//			PassingGrade grade;
-//			if(passGrd.equals("true")) {
-//				grade = om.readValue(passGrd, PassingGrade.class);
-//			}
+			String passGrd8_1 = om.writeValueAsString(req.getParameter("field8-1"));
+			String passGrd8_2 = om.writeValueAsString(req.getParameter("field8-2"));
+			String passGrd8_3 = om.writeValueAsString(req.getParameter("field8-3"));
+			String passGrd8_4 = om.writeValueAsString(req.getParameter("field8-4"));
+			PassingGrade grade;
+			if(passGrd8_1.equals("true")) {
+				grade = PassingGrade.A;
+			}else if(passGrd8_2.equals("true")) {
+				grade = PassingGrade.B;
+			}else if(passGrd8_3.equals("true")) {
+				grade = PassingGrade.C;
+			}else if(passGrd8_4.equals("true")) {
+				grade = PassingGrade.C;
+			}else {
+				grade = PassingGrade.C;
+			}
 //			PassingGrade grade = om.readValue(passGrd, PassingGrade.class);
 	
 			String description = req.getParameter("field9");
 			String justification = req.getParameter("field10");
 			
 			//BROKEN
-//			String pro = req.getParameter("disabledInput");
-//			double projectedAmount = Double.parseDouble(pro);
+			String pro = req.getParameter("hidden-text");
+			double projectedAmount = Double.parseDouble(pro);
 			
-			//BROKEN
-//			String subTime= om.writeValueAsString(req.getParameter("timestamp"));
-//			Date subTime2 = om.readValue(subTime, Date.class);
-//			Timestamp submission = new Timestamp(subTime2.getTime());
 			
 			//puts byte infromation into a byte[] - compatiable with bytea in postgresql
 			byte[] file01 = om.writeValueAsBytes(req.getParameter("file-upload1"));
@@ -96,11 +103,11 @@ public class FormController {
 				hasApprovalEmail = false;
 			}
 			
-			Approval appr = Approval.PENDING;
+			Approval approval = Approval.PENDING;
 			
 
 			Form form = new Form(0, employeeId, event, dateAndTime, eventLocation, eventCost, format, description, justification,
-					hasApprovalEmail, appr, 0, null);
+					hasApprovalEmail, approval, projectedAmount, grade);
 			System.out.println(form);
 //			form = fServ.getProjectedAmount(form);
 //			System.out.println(form);
@@ -137,14 +144,7 @@ public class FormController {
 			return "html/form.html";
 		}
 	}
-	
-	public static String formGet(HttpServletRequest req, HttpServletResponse res) {
-//		List<Form> formList = aServ.getEventForms();
-		
-		
-		
-		return "forms.change";
-	}
+
 
 
 }
