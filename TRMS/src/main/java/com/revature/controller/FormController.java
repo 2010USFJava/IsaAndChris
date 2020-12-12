@@ -88,8 +88,8 @@ public class FormController {
 			String justification = req.getParameter("field10");
 			
 			//BROKEN
-//			String pro = req.getParameter("disabledInput");
-//			double projectedAmount = Double.parseDouble(pro);
+			String pro = req.getParameter("hidden-text");
+			double projectedAmount = Double.parseDouble(pro);
 			
 			
 			//puts byte infromation into a byte[] - compatiable with bytea in postgresql
@@ -103,11 +103,11 @@ public class FormController {
 				hasApprovalEmail = false;
 			}
 			
-			Approval appr = Approval.PENDING;
+			Approval approval = Approval.PENDING;
 			
 
 			Form form = new Form(0, employeeId, event, dateAndTime, eventLocation, eventCost, format, description, justification,
-					hasApprovalEmail, appr, 0.00, grade);
+					hasApprovalEmail, approval, projectedAmount, grade);
 			System.out.println(form);
 //			form = fServ.getProjectedAmount(form);
 //			System.out.println(form);
@@ -144,14 +144,7 @@ public class FormController {
 			return "html/form.html";
 		}
 	}
-	
-	public static String formGet(HttpServletRequest req, HttpServletResponse res) {
-//		List<Form> formList = aServ.getEventForms();
-		
-		
-		
-		return "forms.change";
-	}
+
 
 
 }

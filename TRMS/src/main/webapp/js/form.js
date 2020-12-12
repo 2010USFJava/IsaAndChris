@@ -1,77 +1,51 @@
-function loadForm(form) {
-	document.getElementById("field1").innerHTML = form.formFirst;
-	document.getElementById("field2").innerHTML = form.formLast;
-	document.getElementById("inputGroupSelect01").innerHTML = form.formEvent;
-	document.getElementById("field4").innerHTML = form.formDate;
-	//document.getElementById("field5").innerHTML = form.formTime;
-	document.getElementById("field5").innerHTML = form.formLocation;
-	document.getElementById("field6").innerHTML = form.formCost;
-	document.getElementById("field7").innerHTML = form.formFormat;
-	document.getElementById("field8").innerHTML = form.formGrade;
-	document.getElementById("field9").innerHTML = form.formDescript;
-	document.getElementById("field10").innerHTML = form.formJustif;
-	document.getElementById("disabledInput").innerHTML = form.formProjected;
-	document.querySelector('#file-upload1').addEventListener('change', event => { handleFileUpload(event) });
-	document.querySelector('#file-upload2').addEventListener('change', event => { handleFileUpload(event) });
-	getAmount(form);
-	//file uploads
-}
-
-document.querySelector('#file-upload1').addEventListener('change', event => { handleFileUpload(event) });
-document.querySelector('#file-upload2').addEventListener('change', event => { handleFileUpload(event) });
-document.querySelector('#field8').addEventListener('change'), event => {getCheckbox(event)};
-document.querySelector('#field7').addEventListener('change'), event => {displayCheckboc(event)};
-
 function getAmount(){
-	document.getElementById("field6").value = parseFloat(document.getElementById("field6").value).toFixed(2);
-	var amount = document.getElementById("field6").value;
-	var event = document.getElementById("inputGroupSelect01")
 
-	document.getElementById("field6").addEventListener('change', getAmount());
-	document.getElementById('inputGroupSelect01').addEventListener('change', getAmount());
-	
+	var amount = document.getElementById("field6").value;
+	var event = document.getElementById("inputGroupSelect01").value;
+	var projected;
+
 	switch(event){
 		case "universitycourse":
-			document.getElementById("field6").value = parseFloat((amount * .6)).toFixed(2);
-			document.getElementById("disabledInput").value = parseFloat((amout * .6)).toFixed(2);
-			document.getElementById("disabledInput").style.display;
+			projected = parseFloat((amount * .6)).toFixed(2);
+			document.getElementById("hidden-text").value = projected;
 			break;
 		case "seminar":
-			document.getElementById("field6").value = parseFloat((amount * .6)).toFixed(2);
-			document.getElementById("disabledInput").value = parseFloat((amout * .6)).toFixed(2);
-			document.getElementById("disabledInput").style.display;
+			projected = parseFloat((amount * .6)).toFixed(2);
+			document.getElementById("hidden-text").value = projected;
 			break;
 		case "certificationpreparationclass":
-			document.getElementById("field6").value = parseFloat((amount * .6)).toFixed(2);
-			document.getElementById("disabledInput").value = parseFloat((amout * .6)).toFixed(2);
-			document.getElementById("disabledInput").style.display;
+			projected = parseFloat((amount * .6)).toFixed(2);
+			document.getElementById("hidden-text").value = projected;
 			break;
 		case "certification":
-			document.getElementById("field6").value = parseFloat((amount * .6)).toFixed(2);
-			document.getElementById("disabledInput").value = parseFloat((amout * .6)).toFixed(2);
-			document.getElementById("disabledInput").style.display;
+			projected = parseFloat((amount * .6)).toFixed(2);
+			document.getElementById("hidden-text").value = projected;
 			break;
 		case "technicaltraining":
-			document.getElementById("field6").value = parseFloat((amount * .6)).toFixed(2);
-			document.getElementById("disabledInput").value = parseFloat((amout * .6)).toFixed(2);
-			document.getElementById("disabledInput").style.display;
+			projected = parseFloat((amount * .6)).toFixed(2);
+			document.getElementById("hidden-text").value = projected;
 			break;
 		case "other":
-			document.getElementById("field6").value = parseFloat((amount * .6)).toFixed(2);
-			document.getElementById("disabledInput").value = parseFloat((amout * .6)).toFixed(2);
-			document.getElementById("disabledInput").style.display;
+			projected = parseFloat((amount * .6)).toFixed(2);
+		document.getElementById("hidden-text").value = projected;
 			break;
 		default:
 			console.log("error");
 	}
+
 }
 
-const displayCheckbox = event => {
-	if(event.value == "grade"){
-		document.getElementsByClassName("form-check-label").style.displpay = "block";
-		document.getElementsByClassName("form-check-input").style.display = "block";
+/*
+function displayCheckbox(){
+	let grade = document.getElementById("field7").value;
+	if(grade.value == "grade"){
+		document.getElementById("form-check-label").style.display = "block";
+		document.getElementById("form-check-input").style.display = "block";
 	}
 }
+*/
+
+
 
 const getCheckbox = event => {
 	if(document.getElementById("field8-1").checked){
@@ -105,9 +79,30 @@ function getForm() {
 	xhr.open("GET", "http://localhost:8080/TRMS/form.change", true);
 	xhr.send();
 }
+function loadForm(form) {
+	document.getElementById("field1").innerHTML = form.formFirst;
+	document.getElementById("field2").innerHTML = form.formLast;
+	document.getElementById("inputGroupSelect01").innerHTML = form.formEvent;
+	document.getElementById("field4").innerHTML = form.formDate;
+	//document.getElementById("field5").innerHTML = form.formTime;
+	document.getElementById("field5").innerHTML = form.formLocation;
+	document.getElementById("field6").innerHTML = form.formCost;
+	document.getElementById("field7").innerHTML = form.formFormat;
+	document.getElementById("field8").innerHTML = form.formGrade;
+	document.getElementById("field9").innerHTML = form.formDescript;
+	document.getElementById("field10").innerHTML = form.formJustif;
+	document.getElementById("disabledInput").innerHTML = form.formProjected;
+	document.querySelector('#file-upload1').addEventListener('change', event => { handleFileUpload(event) });
+	document.querySelector('#file-upload2').addEventListener('change', event => { handleFileUpload(event) });
+	getAmount(form);
+	//file uploads
+}
+
+document.querySelector('#file-upload1').addEventListener('change', event => { handleFileUpload(event) });
+document.querySelector('#file-upload2').addEventListener('change', event => { handleFileUpload(event) });
 
 //add a functio for file-upload
-const handleFileUpload = event => {
+function handleFileUpload(event) {
 	var payload = jsonBuilder();
 	const files = event.target.files;
 	const formData = new FormData();
@@ -123,17 +118,14 @@ const handleFileUpload = event => {
 		})
 		.catch(error => {
 			console.error(error);
-		})
+		});
 }
 
 	document.querySelector('#file-upload1').addEventListener('change', event => { handleFileUpload(event) });
 	document.querySelector('#file-upload2').addEventListener('change', event => { handleFileUpload(event) });
 window.onload = function () {
 	console.log("window");
-	document.getElementById("form-submit").addEventListener("click", getForm, false);
-	document.getElementById("form-submit").addEventListener("click", postForm, false);
-//	var num = document.getElementById("field6");
-	//getAmount(num);
+
 }
 /*
 function postForm(){
