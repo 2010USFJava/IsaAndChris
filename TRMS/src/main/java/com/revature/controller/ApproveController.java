@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.core.util.IOUtils;
+
 import com.revature.service.ApproveService;
 import com.revature.users.Form;
 
@@ -22,11 +24,22 @@ public class ApproveController {
 			return "html/index.html";
 		}
 	}
-	
-	public static void updateApproval(HttpServletRequest req, HttpServletResponse res) {
+
+	public static void raiseApproval(HttpServletRequest req, HttpServletResponse res) {
 		try {
-			System.out.println(req.getReader().lines().collect(Collectors.joining("&")));
-			// Update DB
+			String eventId = IOUtils.toString(req.getReader());
+			System.out.println("ApproveController.raiseApproval body = " + eventId);
+			approveService.raiseApprovalLevel(eventId);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deny(HttpServletRequest req, HttpServletResponse res) {
+		try {
+			String eventId = IOUtils.toString(req.getReader());
+			System.out.println("ApproveController.deny body = " + eventId);
+			approveService.denyEvent(eventId);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

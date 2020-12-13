@@ -107,7 +107,7 @@ public class FormController {
 			
 
 			Form form = new Form(0, employeeId, event, dateAndTime, eventLocation, eventCost, format, description, justification,
-					hasApprovalEmail, approval, projectedAmount, grade);
+					hasApprovalEmail, approval, projectedAmount, grade, 2);
 			System.out.println(form);
 //			form = fServ.getProjectedAmount(form);
 //			System.out.println(form);

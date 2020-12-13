@@ -83,7 +83,7 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setDouble(11, form.getProjectedAmount());
 		pstmt.setString(12, form.getPassingGrade().toString());
 		pstmt.setInt(13, form.getApprovalLevel());
-	
+
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
 		if (affectedRows > 0) {
@@ -140,9 +140,10 @@ public class FormDaoImpl implements FormDao {
 	@Override
 	public List<Form> getFormsIdByEmployeeJobCode(int code) throws SQLException {
 		Connection conn = cf.getConnection();
-		String sql = "select * from eventform";
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
+		String sql = "select * from eventform where approvallevel = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, code);
+		ResultSet rs = ps.executeQuery();
 		Form f = null;
 		while (rs.next()) {
 			f = new Form();
@@ -151,29 +152,76 @@ public class FormDaoImpl implements FormDao {
 //			f.setEventType(EventType.valueOf(rs.getString(3)));
 //			System.out.println(f.getEventType().toString());
 			f.setDateAndTime(rs.getTimestamp(4));
-			System.out.println("Date and time = " + f.getDateAndTime());
 			f.setEventLocation(rs.getString(5));
+			f.setApprovalLevel(rs.getInt(14));
 			formList.add(f);
 		}
 		return formList;
 	}
+
+	public void raiseFormApprovalLevel(Integer eventId) throws SQLException {
+		Connection conn = cf.getConnection();
+		String sql = "select employeeid, eventcost, approvallevel from eventform where eventid = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, eventId);
+		ResultSet rs = ps.executeQuery();
+		Integer approvalLevel = null;
+		Double cost = null;
+		Integer employeeId = null;
+		while (rs.next()) {
+			employeeId = rs.getInt(1);
+			cost = rs.getDouble(2);
+			approvalLevel = rs.getInt(3);
+		}
+		System.out.println("employeId = " + employeeId);
+		System.out.println("cost = " + cost);
+		System.out.println("approvalLevel = " + approvalLevel);
+		boolean balanceIsHighEnough = false;
+		switch (approvalLevel) {
+		case 2:
+		case 3:
+			approvalLevel++;
+			break;
+		case 4:
+			EmployeeDaoImpl edi = new EmployeeDaoImpl();
+			balanceIsHighEnough = edi.updateEmployeeReimbursement(employeeId, cost);
+			break;
+		}
+		if (balanceIsHighEnough) {
+			approvalLevel = 5;
+		} else {
+			approvalLevel = 6;
+		}
+		String sql2 = "update eventform set approvallevel = ? where eventid = ?";
+		PreparedStatement ps2 = conn.prepareStatement(sql2);
+		ps2.setInt(1, approvalLevel);
+		ps2.setInt(2, eventId);
+		ps2.execute();
+	}
 	
+	public void denyRowById(Integer eventId) throws SQLException {
+		Connection conn = cf.getConnection();
+		String sql = "update eventform set approvallevel = 6 where eventid = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, eventId);
+		ps.execute();
+	}
+
 	static FormService fServ = new FormService();
-	
+
 	@Override
 	public boolean checkUrgency(Form form, long id) throws SQLException {
-		String sql = "select age(dateAndTimeOfEvent, submittedOn) "
-				+ "as duration from eventform where eventId=?";
+		String sql = "select age(dateAndTimeOfEvent, submittedOn) " + "as duration from eventform where eventId=?";
 		Connection conn = cf.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setLong(1, form.getEventId());
 		ResultSet rs = pstmt.executeQuery();
-		while(rs.next()) {
+		while (rs.next()) {
 			long eventId = rs.getLong(1);
 			Timestamp duration = rs.getTimestamp(3);
 			int days = 14;
 			boolean isUrgent = fServ.formDate(eventId, duration);
-		
+
 		}
 		return false;
 	}

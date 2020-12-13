@@ -35,9 +35,13 @@ displayRowsAndBenCoButtons = function(dbRows) {
 
 		approveButton = document.createElement("button");
 		approveButton.innerHTML = "Approve";
+		approveButton.classList.add("btn");
+		approveButton.classList.add("btn-success");
 		tableCell6.appendChild(approveButton);
 		denyButton = document.createElement("button");
 		denyButton.innerHTML = "Deny";
+		denyButton.classList.add("btn");
+		denyButton.classList.add("btn-danger");
 		tableCell7.appendChild(denyButton);
 	}
 }
@@ -52,9 +56,13 @@ displayRowsAndDirSuperButtons = function(dbRows) {
 		
 		approveButton = document.createElement("button");
 		approveButton.innerHTML = "Approve";
+		approveButton.classList.add("btn");
+		approveButton.classList.add("btn-success");
 		tableCell6.appendChild(approveButton);
 		denyButton = document.createElement("button");
 		denyButton.innerHTML = "Deny";
+		denyButton.classList.add("btn");
+		denyButton.classList.add("btn-danger");
 		tableCell7.appendChild(denyButton);
 	}
 }

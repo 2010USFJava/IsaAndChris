@@ -5,7 +5,7 @@ makeRequest = function(address, func) {
 		console.log("the ready state has changed to " + xhttp.readyState + ", and status " + xhttp.status);
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			let result = JSON.parse(xhttp.responseText);
-			console.log("Result:")
+			console.log("makeRequest - result:")
 			console.log(result);
 			func(result);
 		}
@@ -21,10 +21,7 @@ postBody = function(address, body) {
 	xhttp.onreadystatechange = function() {
 		console.log("the ready state has changed to " + xhttp.readyState + ", and status " + xhttp.status);
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			let result = JSON.parse(xhttp.responseText);
-			console.log("Result:")
-			console.log(result);
-			func(result);
+			console.log("postBody = success");
 		}
 	}
 	xhttp.open("POST", address);

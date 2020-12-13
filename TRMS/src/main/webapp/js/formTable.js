@@ -17,7 +17,8 @@ fillRow = function(tableRow, dbRow) {
 	tableCell0.innerHTML = dbRow.eventId;
 	tableCell1.innerHTML = dbRow.employeeId;
 	//tableCell2.innerHTML = dbRow.eventType;
-	//tableCell3.innerHTML = dbRow.dateAndTime;
+	var date = new Date(dbRow.dateAndTime)
+	tableCell3.innerHTML = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 	//console.log("dateAndTime:");
 	//console.log(dbRow.dateAndTime);
 	tableCell4.innerHTML = dbRow.eventLocation;

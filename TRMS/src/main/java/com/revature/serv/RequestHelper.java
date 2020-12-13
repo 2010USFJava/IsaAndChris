@@ -27,10 +27,13 @@ public class RequestHelper {
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
 			return ApproveController.approve(req, res);
-		case "/TRMS/eventapproval.change":
+		case "/TRMS/raiseapprovallevel.change":
 			System.out.println("RequestHelper.process case: eventapproval.change");
-			ApproveController.updateApproval(req, res);
-			return "";
+			ApproveController.raiseApproval(req, res);
+			return "html/approve_deny_reimbursements.html";
+		case "/TRMS/denyevent.change":
+			ApproveController.deny(req, res);
+			return "html/approve_deny_reimbursements.html";
 		case "/TRMS/confirm.change":
 			System.out.println("RequestHelper.process case: confirm.change");
 			return ConfirmController.confirm(req, res);

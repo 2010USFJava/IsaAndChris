@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.daoimpl.FormDaoImpl;
+import com.revature.users.Employee;
 import com.revature.users.Form;
 
 public class ConfirmService {
@@ -14,7 +15,8 @@ public class ConfirmService {
 		FormDaoImpl fdi = new FormDaoImpl();
 		List<Form> formList = null;
 		try {
-			formList = fdi.getFormsIdByEmployeeJobCode(1);
+			Employee employee = (Employee) req.getSession().getAttribute("currentlogin");
+			formList = fdi.getFormsIdByEmployeeJobCode(employee.getJobTitleCode());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
