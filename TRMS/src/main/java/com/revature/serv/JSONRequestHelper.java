@@ -24,7 +24,7 @@ public class JSONRequestHelper {
 		case "/TRMS/getforms.json":
 			SessionController.getForms(req, res);
 			break;
-		case "/TRMS/form.json":
+		case "/TRMS/employeeforms.json":
 			System.out.println("RequestHelper.process case: form.change");
 			SessionController.getEmployeeForms(req, res);
 			break;

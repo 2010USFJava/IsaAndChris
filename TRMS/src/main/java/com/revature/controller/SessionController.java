@@ -60,10 +60,10 @@ public class SessionController {
 	static FormService fServ = new FormService();
 
 	public static void getEmployeeForms(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		List<Form> formList = (ArrayList<Form>) req.getSession().getAttribute("formlist");
-		System.out.println("SessionController.getForms formlist from session = " + formList);
+		List<Form> employeeForms = (ArrayList<Form>) req.getSession().getAttribute("employeeForms");
+		System.out.println("SessionController.employeeforms employeeForms from session = " + employeeForms);
 		try {
-			res.getWriter().write(new ObjectMapper().writeValueAsString(formList));
+			res.getWriter().write(new ObjectMapper().writeValueAsString(employeeForms));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

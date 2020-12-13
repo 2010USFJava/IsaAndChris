@@ -24,15 +24,6 @@ public class ApproveController {
 			return "html/index.html";
 		}
 	}
-	public static void raiseApproval(HttpServletRequest req, HttpServletResponse res) {
-		try {
-			String eventId = IOUtils.toString(req.getReader());
-			System.out.println("ApproveController.raiseApproval body = " + eventId);
-			approveService.raiseApprovalLevel(eventId);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 
 	public static void raiseApproval(HttpServletRequest req, HttpServletResponse res) {

@@ -35,18 +35,6 @@ public class ApproveService {
 	}
 
 
-	public void raiseApprovalLevel(String eventId) {
-		Integer iEventId = Integer.valueOf(eventId);
-		System.out.println("ApproveService.raiseApprovalLevel eventId = " + iEventId);
-		FormDaoImpl fdi = new FormDaoImpl();
-		try {
-			fdi.raiseFormApprovalLevel(iEventId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-
 	public void denyEvent(String eventId) {
 		Integer iEventId = Integer.valueOf(eventId);
 		System.out.println("ApproveService.deny eventId = " + iEventId);

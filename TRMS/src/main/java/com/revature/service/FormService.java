@@ -46,15 +46,15 @@ public class FormService {
 	
 	
 	public List<Form> getEmployeeForms(HttpServletRequest req, Integer id){
-		List<Form> fList = new ArrayList<Form>();
+		List<Form> employeeForms = new ArrayList<Form>();
 		try {
 			Employee employ = (Employee) req.getSession().getAttribute("currentlogin");
-			fList = fdi.getAllFormsByEmployeeId(employ.getEmployeeId());
+			employeeForms = fdi.getAllFormsByEmployeeId(employ.getEmployeeId());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return fList;
+		return employeeForms;
 	}
 	
 }

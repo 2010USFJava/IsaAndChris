@@ -150,11 +150,11 @@ public class FormController {
 		Form f = new Form();
 		f.setEmployeeId(employeeId);
 		if (SessionController.enforceLogin(req, res)) {
-			List<Form> formList = fServ.getEmployeeForms(req, employeeId);
-			req.getSession().setAttribute("emlist", formList);
+			List<Form> employeeForms = fServ.getEmployeeForms(req, employeeId);
+			req.getSession().setAttribute("employeeForms", employeeForms);
 			return "html/form.html";
 		} else {
-			return "html/form.html";
+			return "html/index.html";
 		}
 	}
 	
@@ -164,11 +164,11 @@ public class FormController {
 		Form f = new Form();
 		f.setEmployeeId(employeeId);
 		if (SessionController.enforceLogin(req, res)) {
-			List<Form> formList = fServ.getEmployeeForms(req, employeeId);
-			req.getSession().setAttribute("emlist", formList);
+			List<Form> employeeForms = fServ.getEmployeeForms(req, employeeId);
+			req.getSession().setAttribute("employeeForms", employeeForms);
 			return "html/form.html";
 		} else {
-			return "html/form.html";
+			return "html/index.html";
 		}
 	}
 

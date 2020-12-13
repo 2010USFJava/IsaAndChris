@@ -103,16 +103,26 @@ p{
 
 
 .table{
+	background-color:  #8080c0;
+		table-layout: fixed;
+	
+}
+th{
 	background-color:  #3c84d6;
+}
+table{
+	width: max-content;
+	table-layout: auto;
+	
 }
 
 col{
-	background-color:  #3c84d6;
+	background-color:  #000000;
 }
 
 tr{
-	-webkit-text-fill-color: rgb(0, 0, 0);
-	background-color: rgb(0,0,0);
+	-webkit-text-fill-color: rgb(255, 255, 255);
+
 }
 
 .unstyled-list {
