@@ -1,3 +1,7 @@
+window.onload=function(){
+	getForm();
+}
+
 function getForm() {
 	console.log("in get form");
 
@@ -8,11 +12,27 @@ function getForm() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			console.log(xhr.responseText);
 			var form = JSON.parse(xhr.responseText);
-			loadForm(form);
+		//	loadForm(form);
+			//displayForm(form);
+			loadForms(form);
+			
 		}
 	}
 	xhr.open("GET", "http://localhost:8080/TRMS/form.change", true);
 	xhr.send();
+}
+
+
+function displayForms(form){  //pass in already parsed json
+    var obj = form;//this is kind of useless but obj is shorter lol
+    $.each(obj, function(key,value) { //for each object in reqList:(index, json )
+        console.log(key);
+        console.log(value.requestId); //json.parameter, will pass in the value associated with the parameter
+        optionText = value.requestId; //stores the seen text in option
+        optionValue = value.requestId; //stores a value that is passed in when this option is chosen
+        $('#sreq').append(`<option value="${optionValue}">${optionText}</option>`);
+         //^^^
+        });
 }
 
 function loadForm(form){
@@ -50,7 +70,8 @@ function loadForm(form){
 	div.appendchild(table);
 	
 }
-/*
+
+
 
 function loadForm1(form) {
 	document.getElementById("field1").innerHTML = form.formFirst;
@@ -70,4 +91,29 @@ function loadForm1(form) {
 	getAmount(form);
 	//file uploads
 }
-*/
+
+
+
+function loadForms(tableRow, form){
+	tableCell0 = tableRow.insertCell(0);
+	tableCell1 = tableRow.insertCell(1);
+	tableCell2 = tableRow.insertCell(2);
+	tableCell3 = tableRow.insertCell(3);
+	tableCell4 = tableRow.insertCell(4);
+	tableCell5 = tableRow.insertCell(5);
+	tableCell6 = tableRow.insertCell(6);
+	tableCell7 = tableRow.insertCell(7);
+	tableCell8 = tableRow.insertCell(8);
+	tableCell9 = tableRow.insertCell(9);
+	tableCell10 = tableRow.insertCell(10);
+	tableCell11 = tableRow.insertCell(11);
+	tableCell12 = tableRow.insertCell(12);
+	tableCell13 = tableRow.insertCell(13);
+	tableCell14 = tableRow.insertCell(14);
+	tableCell0.innerHTML = form.eventId;
+	tableCell1.innerHTML = form.employeeId;
+		var date = new Date(form.dateAndTime)
+	tableCell3.innerHTML = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+}
+
+

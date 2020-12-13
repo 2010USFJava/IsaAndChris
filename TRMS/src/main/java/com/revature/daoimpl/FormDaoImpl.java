@@ -113,7 +113,7 @@ public class FormDaoImpl implements FormDao {
 	}
 
 	@Override
-	public void updateForm(Form form, long id) throws SQLException {
+	public void updateForm(long id) throws SQLException {
 		Connection conn = cf.getConnection();
 		int affectedRows = 0;
 		LogInfo.LogIt("info", "Reimbursement request form " + id + " has been updated");
@@ -217,7 +217,7 @@ public class FormDaoImpl implements FormDao {
 	@Override
 	public boolean checkUrgency(Form form, long id) throws SQLException {
 
-		String sql = "select dateAndTimeOfEvent, submittedOn from eventform where eventId=?";
+		String sql = "select eventId,dateAndTimeOfEvent,submittedOn from eventform where eventId=?";
 
 		Connection conn = cf.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -225,9 +225,10 @@ public class FormDaoImpl implements FormDao {
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			long eventId = rs.getLong(1);
-			Timestamp duration = rs.getTimestamp(3);
+			Timestamp eventDate = rs.getTimestamp(2);
+			Timestamp submittedOn = rs.getTimestamp(3);
 			int days = 14;
-			boolean isUrgent = fServ.formDate(eventId, duration);
+			boolean isUrgent = fServ.formDate(eventId, eventDate, submittedOn);
 
 		}
 		return false;
@@ -242,11 +243,11 @@ public class FormDaoImpl implements FormDao {
 		ResultSet rs = pstmt.executeQuery();
 		Form f = null;
 		while (rs.next()) {
-			f = new Form( rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)),
+			f = new Form( rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3).toLowerCase()),
 						rs.getTimestamp(4), rs.getString(5), rs.getDouble(6),
-						GradeFormat.valueOf(rs.getString(7)), rs.getString(8), rs.getString(9),
-						rs.getBoolean(10), Approval.valueOf(rs.getString(11)), rs.getDouble(12), 
-						PassingGrade.valueOf(rs.getString(13)), rs.getInt(14));
+						GradeFormat.valueOf(rs.getString(7).toLowerCase()), rs.getString(8), rs.getString(9),
+						rs.getBoolean(10), Approval.valueOf(rs.getString(11).toLowerCase()), rs.getDouble(12), 
+						PassingGrade.valueOf(rs.getString(13).toLowerCase()), rs.getInt(14));
 			formList.add(f);
 		}
 		return formList;

@@ -192,15 +192,6 @@ public class Form implements Events, Serializable {
 		this.passingGrade = passingGrade;
 	}
 	
-	
-
-	public int getApprovalLevel() {
-		return approvalLevel;
-	}
-
-	public void setApprovalLevel(int approvalLevel) {
-		this.approvalLevel = approvalLevel;
-	}
 
 	public int getApprovalLevel() {
 		return approvalLevel;

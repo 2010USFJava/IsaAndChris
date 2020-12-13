@@ -10,7 +10,7 @@ public interface FormDao {
 	public Form getFormById(long id) throws SQLException;
 	public long insertNewForm(Form form, long id) throws SQLException;
 	public long deleteForm(Form form, long id) throws SQLException;
-	public void updateForm(Form form, long id) throws SQLException;
+	public void updateForm(long id) throws SQLException;
 	public long viewForm(Form form, long id) throws SQLException;
 	public boolean checkUrgency(Form form, long id) throws SQLException;
 	public List<Form> getAllFormsByEmployeeId(long id) throws SQLException;

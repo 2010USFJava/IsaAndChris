@@ -1,10 +1,10 @@
 package com.revature.controller;
 
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -75,15 +75,15 @@ public class FormController {
 				String passGrd8_4 = om.writeValueAsString(req.getParameter("field8-4"));
 				PassingGrade grade;
 				if (passGrd8_1.equals("true")) {
-					grade = PassingGrade.A;
+					grade = PassingGrade.a;
 				} else if (passGrd8_2.equals("true")) {
-					grade = PassingGrade.B;
+					grade = PassingGrade.b;
 				} else if (passGrd8_3.equals("true")) {
-					grade = PassingGrade.C;
+					grade = PassingGrade.c;
 				} else if (passGrd8_4.equals("true")) {
-					grade = PassingGrade.C;
+					grade = PassingGrade.c;
 				} else {
-					grade = PassingGrade.C;
+					grade = PassingGrade.c;
 				}
 //			PassingGrade grade = om.readValue(passGrd, PassingGrade.class);
 
@@ -106,7 +106,7 @@ public class FormController {
 					hasApprovalEmail = false;
 				}
 
-				Approval approval = Approval.PENDING;
+				Approval approval = Approval.pending;
 
 				Form form = new Form(0, employeeId, event, dateAndTime, eventLocation, eventCost, format, description,
 						justification, hasApprovalEmail, approval, projectedAmount, grade, 2);
@@ -120,7 +120,7 @@ public class FormController {
 					hasApprovalEmail = true;
 
 //				 a1 = new Attachment(0, FileName.EVENTRELATEDDOCUMENT, file01, false, eventId);
-					a2 = new Attachment(0, FileName.APPROVALDOCUMENT, file02, false, employeeId);
+					a2 = new Attachment(0, FileName.approvaldocument, file02, false, employeeId);
 					adi.insertNewAttachment(a2);
 				} else if (file02 == null) {
 					hasApprovalEmail = false;
@@ -151,10 +151,24 @@ public class FormController {
 		f.setEmployeeId(employeeId);
 		if (SessionController.enforceLogin(req, res)) {
 			List<Form> formList = fServ.getEmployeeForms(req, employeeId);
-//			req.getSession().setAttribute("emlist", formList);
+			req.getSession().setAttribute("emlist", formList);
 			return "html/form.html";
 		} else {
-			return "html/index.html";
+			return "html/form.html";
+		}
+	}
+	
+	public static String update(HttpServletRequest req, HttpServletResponse res) {
+		Employee employ = (Employee) req.getSession().getAttribute("currentlogin");
+		Integer employeeId = employ.getEmployeeId();
+		Form f = new Form();
+		f.setEmployeeId(employeeId);
+		if (SessionController.enforceLogin(req, res)) {
+			List<Form> formList = fServ.getEmployeeForms(req, employeeId);
+			req.getSession().setAttribute("emlist", formList);
+			return "html/form.html";
+		} else {
+			return "html/form.html";
 		}
 	}
 

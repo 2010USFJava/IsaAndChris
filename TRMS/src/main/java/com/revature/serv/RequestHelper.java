@@ -23,7 +23,15 @@ public class RequestHelper {
 			return HomeController.home(req, res);
 		case "/TRMS/newform.change":
 			System.out.println("RequestHelper.process case: newform.change");
-			return FormController.form(req);
+			return FormController.form(req, res);
+		case "/TRMS/form.change":
+			System.out.println("RequestHelper.process case: form.change");
+			FormController.view(req, res);
+			return "html/form.html";
+		case "/TRMS/grade_presentation.change":
+			System.out.println("RequestHelper.process case: form.change");
+			FormController.update(req, res);
+			return "html/grade_presentation.html";
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
 			return ApproveController.approve(req, res);
@@ -40,9 +48,6 @@ public class RequestHelper {
 		case "/TRMS/logout.change":
 			System.out.println("RequestHelper.process case: logout.change");
 			return SessionController.logout(req);
-		case "/TRMS/form.change":
-			System.out.println("RequestHelper.process case: form.change");
-			return FormController.view(req, res);
 		default:
 			System.out.println("RequestHelper.process case: default");
 			return "html/unsuccessfullogin.html";
