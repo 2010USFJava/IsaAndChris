@@ -3,8 +3,8 @@ package com.revature.users;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.revature.util.LogInfo;
 
 
 public class Form implements Events {
@@ -51,6 +51,7 @@ public class Form implements Events {
 		this.projectedAmount = projectedAmount;
 		this.passingGrade = passingGrade;
 		this.approvalLevel = approvalLevel;
+		LogInfo.LogIt("info", "A new form was created for employee " + employeeId);
 	}
 	
 	

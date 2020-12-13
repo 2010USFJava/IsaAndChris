@@ -17,6 +17,7 @@ import com.revature.users.Events.GradeFormat;
 import com.revature.users.Events.PassingGrade;
 import com.revature.users.Form;
 import com.revature.util.ConnFactory;
+import com.revature.util.LogInfo;
 
 public class FormDaoImpl implements FormDao {
 
@@ -96,7 +97,7 @@ public class FormDaoImpl implements FormDao {
 				eventId = rs.getLong(1);
 			}
 		}
-
+		LogInfo.LogIt("info", id + " has submitted a new reimbursement request id: " + eventId);
 		return eventId;
 	}
 
@@ -115,7 +116,7 @@ public class FormDaoImpl implements FormDao {
 	public void updateForm(Form form, long id) throws SQLException {
 		Connection conn = cf.getConnection();
 		int affectedRows = 0;
-
+		LogInfo.LogIt("info", "Reimbursement request form " + id + " has been updated");
 	}
 
 	@Override
