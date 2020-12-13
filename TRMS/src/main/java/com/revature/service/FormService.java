@@ -2,13 +2,16 @@ package com.revature.service;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.revature.controller.SessionController;
 import com.revature.daoimpl.AttachmentDaoImpl;
 import com.revature.daoimpl.FormDaoImpl;
 import com.revature.users.Attachment;
 import com.revature.users.Employee;
-import com.revature.users.Events.EventType;
 import com.revature.users.Form;
 
 public class FormService {
@@ -30,6 +33,16 @@ public class FormService {
 		return false;
 	}
 	
+	public List<Form> getEmployeeForms(HttpServletRequest req, Integer id){
+		List<Form> fList = new ArrayList<Form>();
+		req.getSession().setAttribute("emlist", fList);
+		try {
+			fList = fdi.getAllFormsByEmployeeId(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return fList;
+	}
 	
 }
 	

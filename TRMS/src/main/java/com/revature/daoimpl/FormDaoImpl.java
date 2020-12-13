@@ -11,8 +11,13 @@ import java.util.List;
 
 import com.revature.dao.FormDao;
 import com.revature.service.FormService;
+import com.revature.users.Events.Approval;
+import com.revature.users.Events.EventType;
+import com.revature.users.Events.GradeFormat;
+import com.revature.users.Events.PassingGrade;
 import com.revature.users.Form;
 import com.revature.util.ConnFactory;
+import com.revature.util.LogInfo;
 
 public class FormDaoImpl implements FormDao {
 
@@ -92,7 +97,7 @@ public class FormDaoImpl implements FormDao {
 				eventId = rs.getLong(1);
 			}
 		}
-
+		LogInfo.LogIt("info", id + " has submitted a new reimbursement request id: " + eventId);
 		return eventId;
 	}
 
@@ -111,7 +116,7 @@ public class FormDaoImpl implements FormDao {
 	public void updateForm(Form form, long id) throws SQLException {
 		Connection conn = cf.getConnection();
 		int affectedRows = 0;
-
+		LogInfo.LogIt("info", "Reimbursement request form " + id + " has been updated");
 	}
 
 	@Override
@@ -211,7 +216,9 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public boolean checkUrgency(Form form, long id) throws SQLException {
-		String sql = "select age(dateAndTimeOfEvent, submittedOn) " + "as duration from eventform where eventId=?";
+
+		String sql = "select dateAndTimeOfEvent, submittedOn from eventform where eventId=?";
+
 		Connection conn = cf.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setLong(1, form.getEventId());
@@ -224,6 +231,25 @@ public class FormDaoImpl implements FormDao {
 
 		}
 		return false;
+	}
+
+	@Override
+	public List<Form> getAllFormsByEmployeeId(long id) throws SQLException {
+		Connection conn = cf.getConnection();
+		String sql = "select * from eventform where employeeId=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		Form f = null;
+		while (rs.next()) {
+			f = new Form( rs.getLong(1), rs.getLong(2), EventType.valueOf(rs.getString(3)),
+						rs.getTimestamp(4), rs.getString(5), rs.getDouble(6),
+						GradeFormat.valueOf(rs.getString(7)), rs.getString(8), rs.getString(9),
+						rs.getBoolean(10), Approval.valueOf(rs.getString(11)), rs.getDouble(12), 
+						PassingGrade.valueOf(rs.getString(13)), rs.getInt(14));
+			formList.add(f);
+		}
+		return formList;
 	}
 
 }

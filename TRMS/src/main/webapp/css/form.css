@@ -13,7 +13,14 @@
 }
 .nav-links {
 	justify-content: space-around;
-	list-style: none;
+}
+.dropdown-menu{
+	background-color: #1455a0;
+
+}
+.dropdown-item:hover{
+	background-color:white;
+	-webkit-text-fill-color: black;
 }
 
 
@@ -23,7 +30,7 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-h1, form{
+h1, h2{
 	min-height: 20vh;
 	display: flex;
 	flex-wrap: wrap;
@@ -32,6 +39,13 @@ h1, form{
 	-webkit-text-fill-color: rgb(0, 0, 0);
 }
 
+form{
+	min-height: 10vh;
+	margin: 20px 0 10px 0;
+	display: flex;
+	align-items: center;
+	-webkit-text-fill-color: rgb(0, 0, 0);
+}
 h3{
 	-webkit-text-fill-color: rgb(0, 0, 0);
 }
@@ -72,7 +86,7 @@ textarea{
 	
 }
 
-.form-style li{
+.form-style ,li{
 	padding: 0;
 	list-style: none;
 	margin: 20px 0 0 0;

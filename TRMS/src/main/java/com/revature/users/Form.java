@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.revature.util.LogInfo;
 
 
 public class Form implements Events, Serializable {
@@ -52,6 +53,8 @@ public class Form implements Events, Serializable {
 		this.projectedAmount = projectedAmount;
 		this.passingGrade = passingGrade;
 		this.approvalLevel = approvalLevel;
+		LogInfo.LogIt("info", "A new form was created for employee " + employeeId);
+
 	}
 	
 	
@@ -188,6 +191,16 @@ public class Form implements Events, Serializable {
 	public void setPassingGrade(PassingGrade passingGrade) {
 		this.passingGrade = passingGrade;
 	}
+	
+	
+
+	public int getApprovalLevel() {
+		return approvalLevel;
+	}
+
+	public void setApprovalLevel(int approvalLevel) {
+		this.approvalLevel = approvalLevel;
+	}
 
 	public int getApprovalLevel() {
 		return approvalLevel;
@@ -207,6 +220,7 @@ public class Form implements Events, Serializable {
 				+ approvalLevel + "]";
 	}
 
+	
 
 	
 	
