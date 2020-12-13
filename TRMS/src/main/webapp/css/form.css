@@ -6,78 +6,77 @@
 	box-sizing: border-box;
 }
 
-body{
-	background-image: linear-gradient(120deg, #65e5f6, #326a8a);
-    color: rgb(255, 255, 255);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.navbar{
+	background-color: #1455a0;
+	border: none;
+	-webkit-text-fill-color: rgb(255, 255, 255);
 }
-header{
-	font-size: 1.5rem;
+.nav-links {
+	justify-content: space-around;
+	list-style: none;
 }
 
-header, form{
+
+body{
+	/* background-image: linear-gradient(120deg, #3fc1e6, #1254a0); */
+	-webkit-text-fill-color: rgb(255, 255, 255);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1, form{
 	min-height: 20vh;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	-webkit-text-fill-color: rgb(0, 0, 0);
 }
 
-.form-style{
-	flex: 1 1 150px;
-	margin: 5;
-	padding-top: 1rem;
-	padding-bottom: 1rem;
+h3{
+	-webkit-text-fill-color: rgb(0, 0, 0);
+}
+p{
+	min-height: 10vh;
+	justify-content: left;
+	position: relative;
+	-webkit-text-fill-color: rgb(0, 0, 0);
+}
+.list-group{
+	justify-content: center;
+	position: relative;
+	-webkit-text-fill-color: rgb(0, 0, 0);
+}
+.container{
+	font-size: medium;
+	color:rgb(0, 0, 0);
 }
 
+.table{
+	background-color: #175eaf;
+}
 .form-control li{
 	width: fit-content;
 	margin: 0;
 }
+.required{
+	color: rgb(255, 0, 0);
+}
+
+.form-test{
+	font-size: medium;
+}
+
 textarea{
-	display: inline-flexbox;
+	width:max-content;
+
 	
-}
-
-form button{
-	padding: 0.5rem;
-	font-size: 1rem;
-	border: none;
-	background: white;
-}
-
-.form-container{
-	display: grid;
-	justify-content: center;
-	align-items: center;
 }
 
 .form-style li{
 	padding: 0;
 	list-style: none;
-	margin: 10px 0 0 0;
+	margin: 20px 0 0 0;
 }
-
-.forms{
-	margin: 0.5rem;
-	background:  white;
-	color: black;
-	font-size: 1.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.form-style li{
-	flex: 1;
-}
-
-.header-bar{
-	margin: 1rem;
-	position: relative;
-	overflow: hidden;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
