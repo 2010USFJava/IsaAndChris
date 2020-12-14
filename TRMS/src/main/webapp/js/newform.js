@@ -67,7 +67,7 @@ document.querySelector('#file-upload2').addEventListener('change', event => { ha
 
 //add a functio for file-upload
 function handleFileUpload(event) {
-	var payload = jsonBuilder();
+
 	const files = event.target.files;
 	const formData = new FormData();
 	formData.append('file', files[0]);
@@ -91,7 +91,7 @@ window.onload = function () {
 	console.log("window");
 
 }
-/*
+
 function postForm(){
 	console.log("inside post form");
 	
@@ -108,7 +108,7 @@ function postForm(){
 	var payload = jsonBuilder();
 	xhr.send(payload);
 }
-
+/*
 //function to convert all element data to json for POST
 function jsonBuilder() {
 	var data = document.getElementById("form-container").elements;
@@ -121,57 +121,5 @@ function jsonBuilder() {
 	var json = JSON.stringify(dataObj);
 	console.log(json);
 	return json;
-}
-window.onload = function () {
-	console.log("window");
-	document.getElementById("form-submit").addEventListener("click", getForm, false);
-	document.getElementById("form-submit").addEventListener("click", postForm, false);
-//	var num = document.getElementById("field6");
-	//getAmount(num);
-}
-
-/*
-function getGrade(event){
-	event.preventDefault();
-	switch(event){
-		case "grade":
-			const gradeitem = document.createElement('li');
-			//const gradeBox = docoument.createElement('input');
-			//gradeBox.formList.add("input type=text");
-			//gradeBox.inputMode.addTextarea;
-			//gradeitem.appendChild(gradeBox);
-			break;
-		case "presentation":
-			break;
-	}
-}
-/*
-
-function filerForm(event){
-	const forms = formList.childNodes;
-	forms.forEach(function(forms){
-		switch(e.target.value){
-			case "viewall":
-				forms.style.display = "flex";
-				break;
-			case "viewpending":
-				if(forms.formList.contains("pending")){
-					formList.style.display = "flex";
-				}else{
-					form.style.display = "none";
-				}
-				break;
-			case "viewnew":
-				//create new
-				break;
-			case "viewpast":
-				if(forms.formList.contains("approved")){
-					formList.style.display = "flex";
-				}else{
-					form.style.display = "none";
-				}
-				break;
-		}
-	});
 }
 */

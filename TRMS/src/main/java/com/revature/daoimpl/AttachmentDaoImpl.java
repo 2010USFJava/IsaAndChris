@@ -35,13 +35,12 @@ public class AttachmentDaoImpl implements AttachmentDao {
 
 	@Override
 	public long insertNewAttachment(Attachment attach) throws SQLException {
-		String sql = "insert into attachment values (DEFAULT,?,?,?,?)";
+		String sql = "insert into attachment values (DEFAULT,?,?,?)";
 		Connection conn = cf.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		stmt.setString(1, attach.getFileName().toString());
 		stmt.setBytes(2, attach.getFileData());
-		stmt.setBoolean(3, attach.isUrgent());
-		stmt.setLong(4, attach.getEventId());
+		stmt.setLong(3, attach.getEventId());
 		long attachId = 0;
 		int affectedRows = stmt.executeUpdate();
 		if(affectedRows > 0) {

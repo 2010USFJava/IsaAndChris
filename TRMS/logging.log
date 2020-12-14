@@ -91,3 +91,15 @@
 [INFO ] 2020-12-13 22:28:05.394 [http-nio-8080-exec-3] LogInfo - A new form was created for employee 7
 [INFO ] 2020-12-13 22:28:05.395 [http-nio-8080-exec-3] LogInfo - A new form was created for employee 7
 [INFO ] 2020-12-13 22:28:05.395 [http-nio-8080-exec-3] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-13 23:04:58.525 [http-nio-8080-exec-3] LogInfo - underhill has logged in
+[INFO ] 2020-12-13 23:05:52.966 [http-nio-8080-exec-10] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-13 23:05:53.665 [http-nio-8080-exec-10] LogInfo - 7 has submitted a new reimbursement request id: 42
+[INFO ] 2020-12-13 23:09:40.635 [http-nio-8080-exec-2] LogInfo - underhill has logged in
+[INFO ] 2020-12-13 23:10:48.528 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-13 23:10:49.176 [http-nio-8080-exec-9] LogInfo - 7 has submitted a new reimbursement request id: 43
+[INFO ] 2020-12-13 23:11:27.875 [http-nio-8080-exec-2] LogInfo - underhill has logged in
+[INFO ] 2020-12-13 23:12:16.602 [http-nio-8080-exec-7] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-13 23:12:17.307 [http-nio-8080-exec-7] LogInfo - 7 has submitted a new reimbursement request id: 44
+[INFO ] 2020-12-13 23:13:10.983 [http-nio-8080-exec-2] LogInfo - underhill has logged in
+[INFO ] 2020-12-13 23:13:47.151 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-13 23:13:47.843 [http-nio-8080-exec-9] LogInfo - 7 has submitted a new reimbursement request id: 45
