@@ -6,6 +6,7 @@ import java.util.List;
 import com.revature.daoimpl.UsersDaoImpl;
 import com.revature.users.Employee;
 import com.revature.users.User;
+import com.revature.util.LogInfo;
 
 public class LoginService {
 	UsersDaoImpl udi = new UsersDaoImpl();
@@ -22,6 +23,7 @@ public class LoginService {
 			}
 		}
 		System.out.println("LoginService.loginGetEmployee user not found.");
+		LogInfo.LogIt("info", "Failed Login Attempt");
 		return null;
 	}
 	
@@ -45,6 +47,7 @@ public class LoginService {
 			}
 		}
 		System.out.println("loginVerify user found = " + verify);
+		LogInfo.LogIt("info", username + " has logged in");
 		return verify;
 	}
 

@@ -25,6 +25,7 @@ public class ApproveController {
 		}
 	}
 
+
 	public static void raiseApproval(HttpServletRequest req, HttpServletResponse res) {
 		try {
 			String eventId = IOUtils.toString(req.getReader());
@@ -34,6 +35,7 @@ public class ApproveController {
 			e.printStackTrace();
 		}
 	}
+
 
 	public static void deny(HttpServletRequest req, HttpServletResponse res) {
 		try {

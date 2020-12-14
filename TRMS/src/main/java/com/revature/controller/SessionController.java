@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.service.FormService;
 import com.revature.users.Employee;
 import com.revature.users.Form;
 
@@ -53,6 +54,18 @@ public class SessionController {
 		} else {
 			System.out.println("SessionController.enforceLogin - login validated");
 			return true;
+		}
+	}
+	
+	static FormService fServ = new FormService();
+
+	public static void getEmployeeForms(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		List<Form> employeeForms = (ArrayList<Form>) req.getSession().getAttribute("employeeForms");
+		System.out.println("SessionController.employeeforms employeeForms from session = " + employeeForms);
+		try {
+			res.getWriter().write(new ObjectMapper().writeValueAsString(employeeForms));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

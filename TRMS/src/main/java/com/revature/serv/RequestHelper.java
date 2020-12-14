@@ -24,6 +24,17 @@ public class RequestHelper {
 		case "/TRMS/newform.change":
 			System.out.println("RequestHelper.process case: newform.change");
 			return FormController.form(req, res);
+<<<<<<< HEAD
+=======
+		case "/TRMS/form.change":
+			System.out.println("RequestHelper.process case: form.change");
+			FormController.view(req, res);
+			return "html/form.html";
+		case "/TRMS/grade_presentation.change":
+			System.out.println("RequestHelper.process case: form.change");
+			FormController.update(req, res);
+			return "html/grade_presentation.html";
+>>>>>>> b37b2aadb0e8c03e46563cd5b6bc17d97af1440a
 		case "/TRMS/approve.change":
 			System.out.println("RequestHelper.process case: approve.change");
 			return ApproveController.approve(req, res);

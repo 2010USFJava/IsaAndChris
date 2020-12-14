@@ -11,17 +11,17 @@ public interface Events {
 	@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 	public enum EventType{
 		@JsonProperty("universitycourse")
-		UNIVERSITYCOURSE("universitycourse"), 
+		universitycourse("universitycourse"), 
 		@JsonProperty("seminar")
-		SEMINAR("seminar"),
+		seminar("seminar"),
 		@JsonProperty("certificationpreparationclass")
-		CERTIFICATIONPREPARATIONCLASS("certificationpreparationclass"),
+		certificationpreparationclass("certificationpreparationclass"),
 		@JsonProperty("certification")
-		CERTIFICAITON("certification"), 
+		certification("certification"), 
 		@JsonProperty("technicaltraining")
-		TECHNICALTRAINING("technicaltraining"),
+		technicaltraining("technicaltraining"),
 		@JsonProperty("other")
-		OTHER("other");
+		other("other");
 		private String eventType;
 		private EventType(String string) {
 			this.eventType = string;
@@ -40,9 +40,9 @@ public interface Events {
 	@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 	public enum GradeFormat{
 		@JsonProperty("grade")
-		GRADE("grade"),
+		grade("grade"),
 		@JsonProperty("presentation")
-		PRESENTATION("presentation");
+		presentation("presentation");
 		private String gradeFormat;
 		private GradeFormat(String string) {
 			this.gradeFormat = string;
@@ -60,11 +60,11 @@ public interface Events {
 	
 	public enum PassingGrade{
 		@JsonProperty("a")
-		A("a"),
+		a("a"),
 		@JsonProperty("b")
-		B("b"),
+		b("b"),
 		@JsonProperty("c")
-		C("c");
+		c("c");
 		private String passingGrade;
 		private PassingGrade(String string) {
 			this.passingGrade = string;
@@ -82,13 +82,13 @@ public interface Events {
 	
 	public enum Approval{
 		@JsonProperty("pending")
-		PENDING("pending"),
+		pending("pending"),
 		@JsonProperty("approved")
-		APPROVED("approved"),
+		approved("approved"),
 		@JsonProperty("denied")
-		DENIED("denied"),
+		denied("denied"),
 		@JsonProperty("requestingmoreinformation")
-		REQUESTINGMOREINFORMATION("requestingmoreinformation");
+		requestingmoreinformation("requestingmoreinformation");
 		private String approval;
 		private Approval(String string) {
 			this.approval = string;
@@ -106,9 +106,9 @@ public interface Events {
 	
 	public enum FileName{
 		@JsonProperty("eventrelateddocument")
-		EVENTRELATEDDOCUMENT("eventrelateddocument"),
+		eventrelateddocument("eventrelateddocument"),
 		@JsonProperty("approvaldocument")
-		APPROVALDOCUMENT("approvaldocument");
+		approvaldocument("approvaldocument");
 		private String fileName;
 		private FileName(String string) {
 			this.fileName = string;
