@@ -103,21 +103,23 @@ p{
 
 
 .table{
-	background-color:  #8080c0;
-		table-layout: fixed;
-	
+	background-color:  #71a6e1;
+
 }
 th{
 	background-color:  #3c84d6;
 }
-table{
+.table.table-striped{
 	width: max-content;
+	
 	table-layout: auto;
 	
 }
 
-col{
-	background-color:  #000000;
+.container{
+
+	margin: 0 150px 0 0;
+	
 }
 
 tr{

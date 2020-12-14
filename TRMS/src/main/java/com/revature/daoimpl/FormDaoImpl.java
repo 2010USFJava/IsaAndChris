@@ -16,6 +16,7 @@ import com.revature.users.Events.EventType;
 import com.revature.users.Events.GradeFormat;
 import com.revature.users.Events.PassingGrade;
 import com.revature.users.Form;
+import com.revature.users.GradePresentation;
 import com.revature.util.ConnFactory;
 import com.revature.util.LogInfo;
 
@@ -87,7 +88,7 @@ public class FormDaoImpl implements FormDao {
 		pstmt.setString(10, form.getApproval().toString());
 		pstmt.setDouble(11, form.getProjectedAmount());
 		pstmt.setString(12, form.getPassingGrade().toString());
-		pstmt.setInt(13, form.getApprovalLevel());
+
 
 		long eventId = 0;
 		int affectedRows = pstmt.executeUpdate();
@@ -253,4 +254,10 @@ public class FormDaoImpl implements FormDao {
 		return formList;
 	}
 
+	
+	public void insertGradePresentation(int id, GradePresentation grade) throws SQLException{
+		Connection conn = cf.getConnection();
+
+		
+	}
 }

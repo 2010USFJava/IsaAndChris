@@ -4,7 +4,6 @@ package com.revature.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +26,7 @@ import com.revature.users.Events.FileName;
 import com.revature.users.Events.GradeFormat;
 import com.revature.users.Events.PassingGrade;
 import com.revature.users.Form;
+import com.revature.users.GradePresentation;
 
 public class FormController {
 //	static VillainService vServ = new VillainService();
@@ -38,7 +38,7 @@ public class FormController {
 
 	public static String form(HttpServletRequest req, HttpServletResponse res) {
 		if (!req.getMethod().equals("POST")) {
-			return "html/newform.html";// ????????
+			return "html/newform.html";
 		}
 
 		Employee em = (Employee) req.getSession().getAttribute("currentlogin");
@@ -159,16 +159,36 @@ public class FormController {
 	}
 	
 	public static String update(HttpServletRequest req, HttpServletResponse res) {
-		Employee employ = (Employee) req.getSession().getAttribute("currentlogin");
-		Integer employeeId = employ.getEmployeeId();
-		Form f = new Form();
-		f.setEmployeeId(employeeId);
-		if (SessionController.enforceLogin(req, res)) {
-			List<Form> employeeForms = fServ.getEmployeeForms(req, employeeId);
-			req.getSession().setAttribute("employeeForms", employeeForms);
-			return "html/form.html";
-		} else {
-			return "html/index.html";
+		if (!req.getMethod().equals("POST")) {
+			return "html/grade_presentation.html";
+		}
+		Employee em = (Employee) req.getSession().getAttribute("currentlogin");
+		Integer employeeId = em.getEmployeeId();
+		if(employeeId == null) {
+			return "wrongcreds.change";
+		}else {
+			try {
+			ObjectMapper om = new ObjectMapper();
+			byte[] file01 = om.writeValueAsBytes(req.getParameter("file-upload"));
+			String grade = om.writeValueAsString(req.getParameter("grade-input"));
+			char g = om.readValue(grade, char.class);
+			GradePresentation gp = new GradePresentation(employeeId, 7, file01, g);
+			
+			fdi.updateForm(employeeId);
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "html/home.html";
 		}
 	}
 

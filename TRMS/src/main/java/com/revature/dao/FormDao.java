@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.users.Form;
+import com.revature.users.GradePresentation;
 
 public interface FormDao {
 	public List<Form> getAllForms() throws SQLException;
@@ -17,5 +18,6 @@ public interface FormDao {
 	
 	public long getFormIdByEmployeeId(long id) throws SQLException;
 	List<Form> getFormsIdByEmployeeJobCode(int code) throws SQLException;
+	public void insertGradePresentation(int id, GradePresentation grade) throws SQLException;
 	
 }
