@@ -43,7 +43,7 @@ Logins:
    - username: underhill   
    - password: sting
 - Direct Supervisor:
-   - username: undommiel  
+   - username: undomiel  
    - password: rivendell
 - Department Head:
    - username: strider   
