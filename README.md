@@ -6,10 +6,10 @@ The Tuition Reimbursement Management System (TRMS) is designed to allow employee
 To use the program:
 1. Log in
 2. Select the desired service from the home page
-	a. Each occupation will have its own menu of options
+	- Each occupation will have its own menu of options
 3. You will be redirected to the appropriate page
-	a. The employee "Apply for Tuition Reimbursement" page allows an employeed to submit an event form by filling out the form and pressing submit.
-	b. The direct supervisor, department head, and benco "Approve/Deny Reimbursements" page allows each occupation to approve or deny event forms.
+	- The employee "Apply for Tuition Reimbursement" page allows an employeed to submit an event form by filling out the form and pressing submit.
+	- The direct supervisor, department head, and benco "Approve/Deny Reimbursements" page allows each occupation to approve or deny event forms.
 
 ## Features
 
