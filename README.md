@@ -58,8 +58,8 @@ To use the program:
 3. You will be redirected to the appropriate page
 
 ## Contributors
--Marissa Beckman
--Christopher Osberg
+- Marissa Beckman
+- Christopher Osberg
 
 ## License
 This project uses the following license: MIT License
