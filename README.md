@@ -39,10 +39,18 @@ git clone https://github.com/2010USFJava/IsaAndChris.git
 
 ## Usage
 Logins:
-- Employee: username = underhill    password = sting
-- Direct Supervisor: username = undommiel    password = rivendell
-- Department Head: username = strider     password = anduril
-- Benefits Coordinator: username = galadriel       password = nenya
+- Employee: 
+   username = underhill   
+   password = sting
+- Direct Supervisor:
+   username = undommiel  
+   password = rivendell
+- Department Head:
+   username = strider   
+   password = anduril
+- Benefits Coordinator: 
+   username = galadriel     
+   password = nenya
 
 To use the program:
 1. Log in
