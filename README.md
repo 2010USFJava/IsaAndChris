@@ -35,7 +35,9 @@ To-do List:
 - Confirm Proof of Presentation or Grade
 
 ## Getting Started
+git clone https://github.com/2010USFJava/IsaAndChris.git
 
+## Usage
 To use the program:
 1. Log in
 2. Select the desired service from the home page
