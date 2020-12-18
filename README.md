@@ -62,4 +62,4 @@ Marissa Beckman
 Christopher Osberg
 
 ## License
-This project uses the following license: https://github.com/2010USFJava/IsaAndChris/blob/main/LICENSE
+This project uses the following license: MIT License
