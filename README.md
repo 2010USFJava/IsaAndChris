@@ -13,12 +13,22 @@ To use the program:
 
 ## Technologies Used
 
-- Java 1.8	- JavaScript		- PostgreSQL 12
-- Servlets	- Bootstrap		- Eclipse/Spring Tools Suite 4
-- JDBC		- AJAX			- DBeaver
-- PL/SQL	- JUnit			- Trello
-- HTML		- log4j
-- CSS		- Apache's Tomcat Server
+- Java 1.8	
+- Serlvets
+- JDBC
+- PL/SQL
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+- AJAX
+- JUnit
+- log4j
+- Apache's Tomcat Server
+- PostgreSQL 12
+- Eclipse/Spring Tool Suite 4
+- DBeaver
+- Trello
 
 
 ## Features
