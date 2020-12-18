@@ -35,7 +35,15 @@ To-do List:
 - Confirm Proof of Presentation or Grade
 
 ## Getting Started
+
 To use the program:
 1. Log in
 2. Select the desired service from the home page
 3. You will be redirected to the appropriate page
+
+## Contributors
+Marissa Beckman
+Christopher Osberg
+
+## License
+This project uses the following license: 
