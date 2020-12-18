@@ -103,3 +103,30 @@
 [INFO ] 2020-12-13 23:13:10.983 [http-nio-8080-exec-2] LogInfo - underhill has logged in
 [INFO ] 2020-12-13 23:13:47.151 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
 [INFO ] 2020-12-13 23:13:47.843 [http-nio-8080-exec-9] LogInfo - 7 has submitted a new reimbursement request id: 45
+[INFO ] 2020-12-14 08:52:52.770 [http-nio-8080-exec-7] LogInfo - underhill has logged in
+[INFO ] 2020-12-14 08:54:58.203 [http-nio-8080-exec-3] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:54:58.923 [http-nio-8080-exec-3] LogInfo - 7 has submitted a new reimbursement request id: 46
+[INFO ] 2020-12-14 08:55:09.190 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.190 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.190 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.191 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.191 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.191 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.191 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.191 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 08:55:09.192 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:55:57.406 [http-nio-8080-exec-6] LogInfo - underhill has logged in
+[INFO ] 2020-12-14 11:58:07.543 [http-nio-8080-exec-5] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:08.204 [http-nio-8080-exec-5] LogInfo - 7 has submitted a new reimbursement request id: 47
+[INFO ] 2020-12-14 11:58:57.691 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.691 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.691 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.691 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.692 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.692 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.692 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.692 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.692 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 11:58:57.692 [http-nio-8080-exec-9] LogInfo - A new form was created for employee 7
+[INFO ] 2020-12-14 12:00:53.478 [http-nio-8080-exec-3] LogInfo - strider has logged in
+[INFO ] 2020-12-14 12:03:47.649 [http-nio-8080-exec-7] LogInfo - galadriel has logged in
