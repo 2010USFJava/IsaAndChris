@@ -11,6 +11,16 @@ To use the program:
 	- The employee "Apply for Tuition Reimbursement" page allows an employeed to submit an event form by filling out the form and pressing submit.
 	- The direct supervisor, department head, and benco "Approve/Deny Reimbursements" page allows each occupation to approve or deny event forms.
 
+## Technologies Used
+
+- Java 1.8	- JavaScript		- PostgreSQL 12
+- Servlets	- Bootstrap		- Eclipse/Spring Tools Suite 4
+- JDBC		- AJAX			- DBeaver
+- PL/SQL	- JUnit			- Trello
+- HTML		- log4j
+- CSS		- Apache's Tomcat Server
+
+
 ## Features
 
 
