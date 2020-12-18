@@ -40,8 +40,8 @@ git clone https://github.com/2010USFJava/IsaAndChris.git
 ## Usage
 Logins:
 - Employee: 
-   username = underhill   
-   password = sting
+   .username = underhill   
+   .password = sting
 - Direct Supervisor:
    username = undommiel  
    password = rivendell
