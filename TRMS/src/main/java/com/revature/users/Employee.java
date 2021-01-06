@@ -1,31 +1,29 @@
 package com.revature.users;
 
-public class Employee extends Users {
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+	private static final long serialVersionUID = -844753909439401218L;
 	private int employeeId;
 	private String firstName;
 	private String lastName;
 	private double reimburseAmount;
-	//implements username and password
-	//hopefully employeeId will also be connected to username and password for easy use of the database
+	private int jobTitleCode;
 	
 	public Employee() {
 		super();
 	}
 	
-	//use for login
-	public Employee(String username, String password) {
-		super(username, password);
-	}
-
-	public Employee(int employeeId, String firstName, String lastName) {
+	public Employee(int employeeId, String firstName, String lastName, double reimburseAmount, int jobTitleCode) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		//log for when a new employee is made (for our purposes not demonstration)
+		this.reimburseAmount = reimburseAmount;
+		this.jobTitleCode = jobTitleCode;
 	}
-	
-	public int getEmployeeId() {
+
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
 	
@@ -56,14 +54,19 @@ public class Employee extends Users {
 	public void setReimburseAmount(double reimburseAmount) {
 		this.reimburseAmount = reimburseAmount;
 	}
-	
-	//doesn't display username and password
+
+	public int getJobTitleCode() {
+		return jobTitleCode;
+	}
+
+	public void setJobTitleCode(int jobTitleCode) {
+		this.jobTitleCode = jobTitleCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", reimburseAmount=" + reimburseAmount + "]";
+				+ ", reimburseAmount=" + reimburseAmount + ", jobTitleCode=" + jobTitleCode + "]";
 	}
-
-	
 	
 }

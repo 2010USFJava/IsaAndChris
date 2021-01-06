@@ -1,86 +1,91 @@
 package com.revature.users;
 
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class Form implements Events {
-	private int eventId;
-	private int employeeId;
-	//(yyyy,MMM,dd) y= year(exDisplay: 2020); M= month in year(exDisplay: Jul); d= day in month(exDisplay: 04)
-	private SimpleDateFormat dateOfEvent;//figure out how to use
-	//(hh,mm,a) hh= hour in am/pm (1-12) (exDisplay: 11:); mm= minutes in hour (exDisplay: :22); a= am/pm marker
-	private SimpleDateFormat timeOfEvent;
-	private String eventLocation;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.revature.util.LogInfo;
+
+
+public class Form implements Events, Serializable {
+	private static final long serialVersionUID = -8753132425902261550L;
+	private long eventId;
+	private long employeeId;
+	Employee employee;
 	private EventType eventType;
+	@JsonProperty("dateAndTime")
+	private Timestamp dateAndTime;
+	private String eventLocation;
 	private double eventCost;
 	private GradeFormat gradeFormat;
 	private String description;
 	private String justification;
 	private boolean hasApprovalEmail;
-	private boolean isApproved = false;
+//	private boolean isApproved = false;
+	private Approval approval;
+	private double projectedAmount; //read only field
+	private PassingGrade passingGrade;
+	private int approvalLevel;
+	
 	
 	public Form() {
 		super();
 	}
 
-
-	public Form(int eventId, int employeeId, SimpleDateFormat dateOfEvent, SimpleDateFormat timeOfEvent,
-			String eventLocation, EventType eventType, double eventCost, GradeFormat gradeFormat, String description,
-			String justification, boolean hasApprovalEmail, boolean isApproved) {
+	@JsonCreator
+	public Form(long eventId, long employeeId, @JsonProperty("eventType") EventType eventType, Timestamp dateAndTime,
+			String eventLocation,  double eventCost, @JsonProperty("gradeFromat") GradeFormat gradeFormat, String description,
+			String justification, boolean hasApprovalEmail, Approval approval, double projectedAmount,
+			PassingGrade passingGrade, int approvalLevel) {
 		super();
 		this.eventId = eventId;
 		this.employeeId = employeeId;
-		this.dateOfEvent = dateOfEvent;
-		this.timeOfEvent = timeOfEvent;
-		this.eventLocation = eventLocation;
 		this.eventType = eventType;
+		this.dateAndTime = dateAndTime;
+		this.eventLocation = eventLocation;
 		this.eventCost = eventCost;
 		this.gradeFormat = gradeFormat;
 		this.description = description;
 		this.justification = justification;
 		this.hasApprovalEmail = hasApprovalEmail;
-		this.isApproved = isApproved;
+		this.approval = approval;
+		this.projectedAmount = projectedAmount;
+		this.passingGrade = passingGrade;
+		this.approvalLevel = approvalLevel;
+		LogInfo.LogIt("info", "A new form was created for employee " + employeeId);
+
 	}
+	
+	
 
-
-	public int getEventId() {
+	public long getEventId() {
 		return eventId;
 	}
 
 
-	public void setEventId(int eventId) {
+	public void setEventId(long eventId) {
 		this.eventId = eventId;
 	}
 
 
-	public int getEmployeeId() {
+	public long getEmployeeId() {
 		return employeeId;
 	}
 
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 
 
-	public SimpleDateFormat getDateOfEvent() {
-		return dateOfEvent;
+	public Timestamp getDateAndTime() {
+		return dateAndTime;	
 	}
 
-
-	public void setDateOfEvent(SimpleDateFormat dateOfEvent) {
-		this.dateOfEvent = dateOfEvent;
+	public void setDateAndTime(Timestamp dateAndTime) {
+		this.dateAndTime = dateAndTime;
 	}
-
-
-	public SimpleDateFormat getTimeOfEvent() {
-		return timeOfEvent;
-	}
-
-
-	public void setTimeOfEvent(SimpleDateFormat timeOfEvent) {
-		this.timeOfEvent = timeOfEvent;
-	}
-
 
 	public String getEventLocation() {
 		return eventLocation;
@@ -91,7 +96,7 @@ public class Form implements Events {
 		this.eventLocation = eventLocation;
 	}
 
-
+//	@JsonValue
 	public EventType getEventType() {
 		return eventType;
 	}
@@ -110,8 +115,8 @@ public class Form implements Events {
 	public void setEventCost(double eventCost) {
 		this.eventCost = eventCost;
 	}
-
-
+//
+//	@JsonValue
 	public GradeFormat getGradeFormat() {
 		return gradeFormat;
 	}
@@ -152,25 +157,62 @@ public class Form implements Events {
 	}
 
 
-	public boolean isApproved() {
-		return isApproved;
+//	public boolean isApproved() {
+//		return isApproved;
+//	}
+//
+//
+//	public void setApproved(boolean isApproved) {
+//		this.isApproved = isApproved;
+//	}
+
+
+	public Approval getApproval() {
+		return approval;
+	}
+
+	public void setApproval(Approval approval) {
+		this.approval = approval;
 	}
 
 
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
+	public double getProjectedAmount() {
+		return projectedAmount;
 	}
 
+	public void setProjectedAmount(double projectedAmount) {
+		this.projectedAmount = projectedAmount;
+	}
+
+	public PassingGrade getPassingGrade() {
+		return passingGrade;
+	}
+
+	public void setPassingGrade(PassingGrade passingGrade) {
+		this.passingGrade = passingGrade;
+	}
+	
+
+	public int getApprovalLevel() {
+		return approvalLevel;
+	}
+
+	public void setApprovalLevel(int approvalLevel) {
+		this.approvalLevel = approvalLevel;
+	}
 
 	@Override
 	public String toString() {
-		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", dateOfEvent=" + dateOfEvent
-				+ ", timeOfEvent=" + timeOfEvent + ", eventLocation=" + eventLocation + ", eventType=" + eventType
-				+ ", eventCost=" + eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description
-				+ ", justification=" + justification + ", hasApprovalEmail=" + hasApprovalEmail + ", isApproved="
-				+ isApproved + "]";
+		return "Form [eventId=" + eventId + ", employeeId=" + employeeId + ", employee=" + employee + ", eventType="
+				+ eventType + ", dateAndTime=" + dateAndTime + ", eventLocation=" + eventLocation + ", eventCost="
+				+ eventCost + ", gradeFormat=" + gradeFormat + ", description=" + description + ", justification="
+				+ justification + ", hasApprovalEmail=" + hasApprovalEmail + ", approval=" + approval
+				+ ", projectedAmount=" + projectedAmount + ", passingGrade=" + passingGrade + ", approvalLevel="
+				+ approvalLevel + "]";
 	}
+
 	
+
 	
 	
 	

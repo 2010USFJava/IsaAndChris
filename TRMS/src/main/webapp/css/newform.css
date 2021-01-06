@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+*{
+	margin: 0;
+	padding: 0;
+
+}
+.navbar-brand{
+    border: none;
+	-webkit-text-fill-color: rgb(255, 255, 255);
+}
+.navbar{
+	background-image: linear-gradient(120deg, #3fc1e6, #1254a0); 
+	border: none;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+.dropdown-menu{
+	background-image: linear-gradient(120deg, #3fc1e6, #1254a0); 
+    border: none;
+
+}
+.dropdown-item:hover{
+	background-color:white;
+	-webkit-text-fill-color: black;
+}
+
+body{
+	background-image: linear-gradient(120deg, #3fc1e6, #1254a0); 
+	-webkit-text-fill-color: rgb(255, 255, 255);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1, h2{
+	min-height: 20vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	-webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+.required{
+	-webkit-text-fill-color: rgb(255, 0, 0);
+}
+
+.form-container{
+    display: inline-block;
+    width: max-content;
+}
+
+input::placeholder{
+    -webkit-text-fill-color: darkgrey;
+    opacity: 2;
+}
+
+
+.list-group {
+    min-height: 10vh;
+    list-style: none;
+    margin-left: 20px;
+    font-size: medium;
+	-webkit-text-fill-color: rgb(0, 0, 0);
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
